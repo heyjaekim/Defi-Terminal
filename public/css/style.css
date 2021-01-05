@@ -282,17 +282,34 @@ p {
 }
 
 .trade-information .context1 {
-  margin-right: 135px;
+  margin-right: 190px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.trade-information .context1-unstake {
+  display: none;
+  margin-right: 190px;
   font-weight: bold;
   font-size: 16px;
 }
 .trade-information .context2 {
-  margin-right: 330px;
+  margin-right: 325px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.trade-information .context2-unstake {
+  display: none;
+  margin-left: 293px;
+  margin-right: 325px;
   font-weight: bold;
   font-size: 16px;
 }
 .trade-information .context3 {
-  margin-right: 100px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.trade-information .context3-unstake {
+  display: none;
   font-weight: bold;
   font-size: 16px;
 }
@@ -305,14 +322,17 @@ p {
 .trade-size {
   margin-left: 350px;
 }
-
-.token-size {
-  display: inline-block;
-  margin-left: 100px;
+.trade-size-unstake {
+  display:none;
+  margin-left: 350px;
 }
 
 .wallet-address {
   margin-left: 70px;
+}
+.wallet-address-unstake {
+  display:none;
+  margin-left: 637px;
 }
 
 
@@ -398,22 +418,6 @@ p {
   outline: none;
 }
 
-
-.input-each-token-size1{
-  background-color:#51A0BF;
-  border-radius: 20px;
-  width: 217px; 
-  height: 40px;
-  border: none;  
-  color: white;
-  padding-left: 24px;
-  font-size: 23px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.input-each-token-size1:focus{
-  border: none;
-  outline: none;
-}
 .input-each-token-size2{
   background-color:#51A0BF;
   border-radius: 20px;
@@ -488,12 +492,12 @@ p {
   font-weight: bold;
 }
 .trading-rows .context2 {
-  margin-right: 206px;
+  margin-right: 130px;
   font-weight: bold;
   font-size: 17px;
 }
 .trading-rows .context3 {
-  margin-right: 385px;
+  margin-right: 378px;
   font-weight: bold;
   font-size: 17px;
 }
@@ -502,26 +506,49 @@ p {
   font-weight: bold;
   font-size: 17px;
 }
-.eth-usdt-row{
+.trading-rows-unstake {
+  display:none;
   position: relative;
-  margin-left: 67px;
-  margin-top: 23px;
+  margin-top: 37px;
+  margin-left:81px;
+  color: #073d67;
 }
-.eth-usdt-row button {
-  border: none;
-  color: green;
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-.eth-usdt-row h5 {
-  color: white;
+
+.trading-rows-unstake .context1 {
+  margin-right: 160px;
   font-size: 17px;
   font-weight: bold;
-  margin-left: 39px;
-  display:inline-block;
+}
+.trading-rows-unstake .context2 {
+  margin-right: 149px;
+  font-weight: bold;
+  font-size: 17px;
+}
+.trading-rows-unstake .context3 {
+  margin-right: 272px;
+  font-weight: bold;
+  font-size: 17px;
+}
+.trading-rows-unstake .context4 {
+  /* margin-right: 100px; */
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.input-each-token-size1{
+  background-color:#51A0BF;
+  border-radius: 20px;
+  width: 217px; 
+  height: 40px;
+  border: none;  
+  color: white;
+  padding-left: 24px;
+  font-size: 23px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.input-each-token-size1:focus{
+  border: none;
+  outline: none;
 }
 
 .connect-account{
@@ -549,7 +576,7 @@ p {
 }
 
 .percent_area{
-  display: flex;
+  display: inline-block;
   justify-content: space-between;
   align-items: center;
   position: absolute;
@@ -601,6 +628,27 @@ p {
   outline: none;
 }
 
+
+.eth-usdt-row{
+  /* display: inline-block; */
+  margin-left: 67px;
+  margin-top: 23px;
+}
+.liquidity_pools{
+
+}
+
+.display_address_pair{
+  display: none;
+}
+.display_default_pair{
+  display: block;
+}
+
+.eth-usdt-row button {
+  border: none;
+  /* display: inline-block; */
+}
 .eth-icon{
   background: none;
   position: absolute;
@@ -613,8 +661,37 @@ p {
 .eth-icon img{
   width: 20px;  
 }
-.eth-usdt-image-after{
+.eth-usdt-row h5 {
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-left: 39px;
+}
+
+.eth_usdt_pair{
+  display: inline;
+  position: absolute;
   margin-left:35px;
+}
+.eth_token_size{
+  display: inline-block;
+  /* position: absolute; */
+  /* margin-top: 10 */
+  margin-left: 100px;
+}
+.token_size {
+  display: inline-block;
+  /* position: relative; */
+  /* position: absolute; */
+  margin-left: 165px;
+  /* margin-bottom: 100px; */
+}
+.eth_token_size2{
+  display: inline-block;
+  /* position: absolute; */
+  /* margin-top: 10 */
+  margin-left: 100px;
 }
 .dollar-icon{
   background: none;

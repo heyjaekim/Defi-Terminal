@@ -7,3 +7,5 @@
 - 에러가 나는경우 react-router-dom 과 reactstrap을 yarn add로 설치 필요.
 ### `npm install web3`
 - 스마트 컨트랙트 연동시 설치 필요
+### `yarn add bignumber.js`
+- web3 ether 처럼 큰 수 핸드링
