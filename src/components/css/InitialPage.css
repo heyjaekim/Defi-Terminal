@@ -1,0 +1,30 @@
+.initial {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  background-color: #277da4;
+}
+
+.initial-aft{
+    display: none;
+}
+
+.initial .portfolioHomeAttr {
+  position: relative;
+  height: 100vh;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.initial .connectbox {
+  margin: auto;
+  width: 20%;
+  height: 50%;
+}
+
+.initial .connectbox input {
+  padding: 5px;
+  width: 100%;
+  font-size: 18px;
+  margin-top: 200px;
+}

@@ -1,0 +1,388 @@
+.portfolio {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  background-color: #277da4;
+}
+
+.portfolio .portfolioHomeAttr {
+  position: relative;
+  height: 95vh;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.box {
+  width: 1600px;
+  height: 16rem;
+  border-radius: 20px;
+  background-color: #155b84;
+}
+
+.portfolio .percentSector {
+  /* margin-left: 1000px; */
+  margin-top: 60px;
+}
+
+.possessPercent {
+  font-weight: bold;
+  width: 67px;
+  height: 37px;
+  text-align: center;
+  margin: 0 0 10px;
+  border-radius: 20px;
+  background-color: #63afca;
+  color: white;
+  border: none;
+  outline: none;
+}
+.possessPercent2 {
+  font-weight: bold;
+  width: 67px;
+  height: 37px;
+  text-align: center;
+  margin: 0 0 10px;
+  border-radius: 20px;
+  color: white;
+  background-color: #073d67;
+  border: none;
+  outline: none;
+}
+.possessPercent3 {
+  font-weight: bold;
+  width: 67px;
+  height: 37px;
+  text-align: center;
+  margin: 0 0 10px;
+  border-radius: 20px;
+  color: white;
+  background-color: #277da4;
+  border: none;
+  outline: none;
+}
+
+.unipair {
+  margin-top: 65px;
+  margin-left: 20px;
+}
+.unipair .pair1 {
+  margin-bottom: 24px;
+  color: white;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.unipair .pair2 {
+  margin-bottom: 24px;
+  color: white;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.unipair .pair3 {
+  margin-bottom: 24px;
+  color: white;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.account-totalprofit {
+  margin: 30px 0 0 200px;
+  color: #fff;
+  font-weight: bold;
+}
+.account-totalprofit .cumulative {
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+
+.account-totalprofit .percentage {
+  display: inline-block;
+  position: absolute;
+  margin-left: 20px;
+  color: #41f063;
+}
+
+.account-totalprofit .percentage h5:nth-child(1) {
+  font-size: 40px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 500;
+  opacity: 1;
+  color: #41f063;
+}
+.account-totalprofit .percentage h5:nth-child(2) {
+  opacity: 1;
+  font-size: 24px;
+}
+
+.account-balance {
+  margin: 30px 0 0 200px;
+  color: #fff;
+}
+.account-balance h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  opacity: 0.5;
+}
+
+.account-balance .investment {
+  /* margin-left: 20px; */
+  display: inline;
+  font-size: 24px;
+}
+
+.account-balance .balance {
+  display: inline;
+  position: flex;
+  color: white;
+}
+.account-balance .balance h5 {
+  display: inline;
+  font-size: 24px;
+}
+
+#trading_row_aft {
+  display: none;
+}
+
+#trading_row_aft_btns {
+  display: none;
+}
+
+.portfolio .trading-rows {
+  position: relative;
+  margin-top: 37px;
+  margin-left: 60px;
+  color: #073d67;
+}
+
+.portfolio .trading-rows .context1 {
+  margin-right: 130px;
+  font-size: 17px;
+  /* font-weight: bold; */
+}
+.portfolio .trading-rows .context2 {
+  margin-right: 130px;
+  font-weight: bold;
+  font-size: 17px;
+}
+.portfolio .trading-rows .context3 {
+  margin-right: 130px;
+  font-weight: bold;
+  font-size: 17px;
+}
+.portfolio .trading-rows .context4 {
+  margin-right: 155px;
+  font-weight: bold;
+  font-size: 17px;
+}
+.portfolio .trading-rows .context5 {
+  margin-right: 150px;
+  font-weight: bold;
+  font-size: 17px;
+}
+.portfolio .trading-rows .context6 {
+  width: 100px;
+  font-weight: bold;
+  font-size: 17px;
+  border-radius: 20px;
+}
+.portfolio .trading-rows2 {
+  position: relative;
+  margin-top: 37px;
+  margin-left: 60px;
+  color: #073d67;
+}
+
+.portfolio .trading-rows2 .context1 {
+  margin-right: 130px;
+  font-size: 17px;
+  font-weight: bold;
+}
+.portfolio .trading-rows2 .context2 {
+  margin-right: 550px;
+  font-weight: bold;
+  font-size: 17px;
+}
+.portfolio .trading-rows2 .context3 {
+  margin-right: 275px;
+  font-weight: bold;
+  font-size: 17px;
+}
+.portfolio .trading-rows2 .context4 {
+  font-weight: bold;
+  font-size: 17px;
+  border-radius: 20px;
+}
+.portfolio .trading-rows .context4:focus {
+  outline: none;
+}
+
+.portfolio .trading-rows-unstake {
+  display: none;
+  position: relative;
+  margin-top: 37px;
+  margin-left: 81px;
+  color: #073d67;
+}
+
+.portfolio .eth-usdt-row {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.portfolio .eth_usdt_pair {
+  display: inline;
+  margin-left: 35px;
+}
+
+.portfolio .eth-dollar {
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.portfolio .input-each-token-size1 {
+  background-color: #51a0bf;
+  border-radius: 20px;
+  width: 217px;
+  height: 40px;
+  border: none;
+  color: white;
+  padding-left: 24px;
+  font-size: 23px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.portfolio .eth-dateStaked {
+  display: inline-block;
+  position: absolute;
+  margin-left: 257px;
+}
+.portfolio .eth-amountStaked {
+  display: inline-block;
+  position: absolute;
+  margin-left: 507px;
+}
+.portfolio .eth-currentValue {
+  display: inline-block;
+  position: absolute;
+  margin-left: 787px;
+}
+.portfolio .eth-profitSince {
+  display: inline-block;
+  margin-left: 1060px;
+}
+
+.portfolio .eth-address {
+  display: flex;
+  /* margin-left: 20px; */
+  /* width:200px; */
+}
+.portfolio .address {
+  width: 550px;
+  height: 40px;
+  margin-left: 290px;
+  margin-top: 3px;
+  padding-left: 13px;
+  color: white;
+  display: inline-block;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: #63afca;
+}
+
+.portfolio .percent_area {
+  display: inline-block;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  display: inline-flex;
+  margin-top: 0px;
+  margin-left: 78px;
+  width: 410px;
+  height: 44px;
+  border-radius: 35px;
+  background: rgba(7, 61, 103, 0.5);
+}
+
+.portfolio .image-arrow {
+  width: 10px;
+}
+
+.lp_amount {
+  position: absolute;
+  display: inline;
+  margin-left: 550px;
+  color: white;
+}
+
+.portfolio .cancelSubmit {
+  margin-left: 77%;
+  margin-top: 5%;
+  position:flex;
+  position: absolute;
+}
+
+.portfolio .cancel {
+  right: 0;
+  width: 120px;
+  height: 50px;
+  border-radius: 20px;
+  /* margin-left: 200px; */
+  margin-right: 10px;
+  opacity: 0.5;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.portfolio .cancel:hover {
+  opacity: 1;
+}
+
+.portfolio .withdraw {
+  right: 0;
+  width: 120px;
+  height: 50px;
+  border-radius: 20px;
+  opacity: 0.5;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.portfolio .withdraw:hover {
+  opacity: 1;
+}
+
+.portfolio .gas_speed_area {
+  margin-top: 50px;
+  margin-left: 40%;
+  margin-top: 5%;
+  align-items: center;
+  border-radius: 20px;
+  position: absolute;
+  display: inline-flex;
+  height: 40px;
+  width: 484px;
+  background-color: rgba(7, 61, 103, 0.5);
+  border: none;
+}
+.portfolio .gas_speed_area button {
+  position: relative;
+  z-index: 2;
+  width: 161px;
+  font-size: 16px;
+  color: #fff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  border: none;
+  background: none;
+  transition: color 0.3s ease-in-out;
+}
+.portfolio .gas_speed_area button:focus {
+  border: none;
+  outline: none;
+}

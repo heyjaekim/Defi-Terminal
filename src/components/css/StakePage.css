@@ -1,0 +1,402 @@
+.stakehome {
+  background-color: var(--background-color);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+.stakehome .home-attr {
+  position: relative;
+  height: 960px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+.balance_eth {
+  background-color: #155b84;
+  /* text-align: center; */
+  display: inline-flex;
+  position: relative;
+  width: 256px;
+  height: 143px;
+  border-radius: 20px;
+  margin-left: 47px;
+  margin-top: 33px;
+}
+
+.stakehome .stake_instruct {
+  /* display: flex; */
+  position: relative;
+  top: 180px;
+  left: 1vw;
+  font-size: 24px;
+  color: var(--white-text);
+}
+
+.stakehome .trading_rows {
+  position: relative;
+  top: 190px;
+  left: 1vw;
+  font-size: 18px;
+  color: var(--button-fcolor);
+}
+.stakehome .trading_rows .context1 {
+  display: inline-block;
+}
+.stakehome .trading_rows .context2 {
+  display: inline-block;
+  margin-left: 120px;
+}
+
+.stakehome .eth_usdt_row {
+  /* display: relative; */
+  padding-top: 200px;
+  padding-left: 1vw;
+}
+
+.display_default_pair {
+  display: block;
+}
+.display_address_pair {
+  display: block;
+}
+
+.eth_usdt_row button {
+  border: none;
+  outline: none;
+  background-color: none;
+}
+.eth_icon {
+  padding-top: 4px;
+  background: none;
+  position: absolute;
+  z-index: 2;
+}
+.eth_icon:focus {
+  outline: none;
+  border: none;
+}
+.eth_icon img {
+  width: 28px;
+}
+
+.dollar_icon {
+  padding-top: 4px;
+  background: none;
+  position: absolute;
+  margin-left: 17px;
+  margin-right: 0px;
+}
+.dollar_icon:focus {
+  outline: none;
+  border: none;
+}
+.dollar_icon img {
+  border-radius: 100%;
+  background-color: white;
+  width: 29px;
+}
+
+.eth_usdt_pair h5 {
+  padding-top: 6px;
+  color: var(--white-text);
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-left: 40px;
+}
+
+.eth_token_size {
+  display: inline-block;
+  margin-left: 100px;
+  z-index: 1;
+}
+
+.eth_token_size .token_size {
+  display: inline-block;
+  margin-left: 155px;
+}
+.eth_token_size .token_size .input_each_token_size {
+  background-color: var(--input-color);
+  border-radius: 20px;
+  width: 510px;
+  height: 40px;
+  border: none;
+  color: var(--white-text);
+  padding-left: 20px;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: none;
+  outline: none;
+}
+
+.percent_slider {
+  padding-left: 55px;
+}
+
+.stakehome .adding_box {
+  /* padding-top: 20px; */
+  display: inline-block;
+}
+
+.stakehome .plusMinus_plus {
+  text-align: left;
+  background-color: var(--button-fcolor);
+  color: var(--white-text);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 180px;
+  height: 38px;
+  align-content: left;
+  padding-left: 0;
+  border-radius: 20px;
+}
+
+.stakehome .plusMinus_minus {
+  text-align: left;
+  background-color: var(--button-fcolor);
+  color: var(--white-text);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  width: 200px;
+  height: 38px;
+  margin-left: 3px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+}
+.stakehome .plusMinus_plus:active {
+  transform: translateY(4px);
+}
+.stakehome .plusMinus_minus:active {
+  transform: translateY(4px);
+}
+.stakehome .plusMinus_plus:focus {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+.stakehome .plusMinus_minus:focus {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.gas_speed {
+  /* display: inline-block; */
+  z-index:1;
+  position: relative;
+  float: right;
+  margin-top: 2vh;
+  margin-left: 400px;
+}
+
+.stakehome .gas_speed_content {
+  color: var(--button-fcolor);
+}
+
+.stakehome .stake_box {
+  position: absolute;
+  margin-left: 49%;
+  z-index: 0;
+  background-color: var(--box-color);
+  margin-top: 4vh;
+  border-radius: 20px;
+  width: 50%;
+  height: 800px;
+}
+
+.stake_box .content {
+  margin: 40px 60px;
+}
+
+.content .balance {
+  color: #51a0bf;
+}
+
+.content .ethereum_usd {
+  color: var(--white-text);
+}
+
+.content .ethereum_usd > .eth {
+  font-weight: lighter;
+  /* display:'inline'; */
+}
+.content .ethereum_usd > .bal {
+}
+
+.content .size {
+  padding-top: 48px;
+  color: #51a0bf;
+}
+.stakehome .investment {
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  padding-left: 445px;
+}
+
+.stakehome .address {
+  display: inline-block;
+  margin-left: 160px;
+}
+
+.stakehome .address .address-input {
+  background-color: #51a0bf;
+  border-radius: 20px;
+  width: 480px;
+  height: 40px;
+  border: none;
+  color: white;
+  padding-left: 24px;
+  font-size: 18px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.eth_token_size > .token_size {
+  margin-left: 0px;
+}
+
+.inputTokenSize {
+  background-color: #51a0bf;
+  border-radius: 20px;
+  width: 200px;
+  height: 40px;
+  border: none;
+  color: var(--white-text);
+  padding-left: 24px;
+  padding-right: 18px;
+  margin-left: 100px;
+  font-size: 18px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.inputTokenSize:focus {
+  border: none;
+  outline: none;
+}
+
+.cancel_submit {
+  background-color: none;
+  position: absolute;
+  left: 425px;
+  top: 240px;
+  font-family: Verdana;
+}
+
+.stake_button {
+  margin-left: 19px;
+  border: none;
+  padding: 3px 40px;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  color: #073d67;
+  background-color: #51a0bf;
+  border-radius: 20px;
+}
+
+.stake_button .button-context {
+  font-weight: bold;
+  font-size: 16px;
+  padding-top: 8px;
+}
+
+.stake_button:hover {
+  border: none;
+  outline: none;
+  background-color: var(--white-text);
+  color: #073d67;
+}
+
+.stake_button:focus {
+  border: none;
+  outline: none;
+}
+
+.recommend_page{
+  background-color: var(--box-color);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+.recommend_page .recommend_below {
+  padding-top: 45px;
+  margin: 0 auto;
+  position: relative;
+  background-color: var(--box-color);
+  height: 100vh;
+  max-height: 720px;
+  max-width: 1600px;
+}
+
+.display_address_pair .eth_icon {
+  padding-top: 4px;
+  background: none;
+  position: absolute;
+  outline: none;
+  border: none;
+  z-index: 2;
+}
+.display_address_pair .eth_icon:focus {
+  outline: none;
+  border: none;
+}
+.display_address_pair .eth_icon img {
+  width: 28px;
+}
+
+.display_address_pair .dollar_icon {
+  padding-top: 4px;
+  background: none;
+  outline: none;
+  border: none;
+  position: absolute;
+  margin-left: 17px;
+  margin-right: 0px;
+}
+.display_address_pair .dollar_icon:focus {
+  outline: none;
+  border: none;
+}
+.display_address_pair .dollar_icon img {
+  border-radius: 100%;
+  background-color: white;
+  width: 29px;
+}
+
+.recommend_below .eth_usdt_pair h5 {
+  padding-top: 6px;
+  color: var(--white-text);
+  font-size: 17px;
+  font-weight: bold;
+  /* margin-top: 5px; */
+  margin-left: 40px;
+}
+
+.recommend_below .top_address {
+  /* display: inline-block; */
+  padding-bottom: 22px;
+  padding-left: 240px;
+}
+
+.recommend_below .top_address .address-input {
+  background-color: #4983a3;
+  border-radius: 20px;
+  width: 580px;
+  height: 40px;
+  border: none;
+  color: white;
+  padding-left: 24px;
+  font-size: 18px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
