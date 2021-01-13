@@ -138,7 +138,7 @@ class AddPool extends Component {
                         </div>
                     </div>
                     <div className="percent_slider">
-                    <PercentSlider SetTokenAmount={this.SetTokenAmount} />  
+                        <PercentSlider SetTokenAmount={this.SetTokenAmount} />  
                     </div>
                 </Row>
                 <div className="eth-usdt-row"></div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row } from 'reactstrap';
 import Web3 from "web3";
 import BigNumber from "bignumber.js";
 import '../components/css/ConnectedPage.css';
@@ -8,7 +8,7 @@ import { AiFillPlusCircle, AiFillMinusCircle, AiOutlineQuestionCircle } from 're
 import GasSlider from "../components/GasSlider.js";
 import AddPool from '../components/AddPool.js';
 import TopPool from '../components/TopPool.js';
-import { FaWeight } from 'react-icons/fa';
+
 
 
 
@@ -63,6 +63,11 @@ class StakePage extends React.Component {
     /* PercentForm으로 전달되는 token data의 상태들 입니다. */
     /* Unipair address row 에서 업데이트 한 후 invest를 누를 시에 this.SetTokenData를 통해 App.js에 있는 this.state.tokenData로 데이터 값이 업데이트 됩니다. */
     addNewTokenData = async () => {
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        let today = new Date();
+        let date = monthNames[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear();
         const state = {
             default_t_id: 'default_' + this.state.t_id.toString(),
             address_t_id: 'address_' + this.state.t_id.toString(),
@@ -70,10 +75,8 @@ class StakePage extends React.Component {
             erc20_abi: this.state.erc20_abi,
             pairLeft: 'ETH',
             pairRight: 'USD',
-            dateStaked: '',
-            amountStaked: 0,
-            isProfit: false,
-            profitSince: '',
+            dateStaked: date,
+            profitSince: [true, .20], // [false || true , profit Percent] 값이 stake한 시점부터 지속적으로 모니터링 되어서 업데이트 되어야 함.
             pair_cont: null,
             pair_addr: '',
             pair_token0: null,
@@ -243,12 +246,6 @@ class StakePage extends React.Component {
         });
     }
 
-    setDate = async () => {
-        var today = new Date();
-        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        this.setState({ date: date });
-    }
-
     removeTokenData = async () => {
         this.state.tokenData.pop();
         this.forceUpdate();
@@ -276,16 +273,11 @@ class StakePage extends React.Component {
                 return (<AddPool token={token} updateTradeTotalSize={this.updateTradeTotalSize} key={i} />);
             })
         }
-        const mapToTopPools = (data) => {
-            return data.map((pool, i) => {
-                return (<TopPool pool={pool} key={i} />);
-            })
-        }
         const monthNames = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
         ];
         var today = new Date();
-        var date = monthNames[today.getMonth()] + ' ' + today.getDate() + '-' + today.getFullYear();
+        var date = monthNames[today.getMonth()] + ' ' + today.getDate() + '-' + today.getFullYear();        
         return (
             <React.Fragment>
                 <div className="stakehome">
@@ -314,16 +306,6 @@ class StakePage extends React.Component {
                             </div>
                         </Row>
                         <Row>
-                            <div id="detail_select_area" style={{ display: 'none' }}>
-                                <div className="balance_eth">
-                                    <div className="mt--16 ml--33">
-                                        <h5 className="available">Available Balance</h5>
-                                        <h3 className="available-eth">{this.props.EtherBalance} ETH</h3>
-                                        <h5 className="available-dollar">$ {this.props.UsdBalance}</h5>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div className="trading_rows">
                                 <div className="context1">Liquidity Pools</div>
                                 <div className="context2">Address</div>
@@ -390,8 +372,7 @@ class StakePage extends React.Component {
                             Top Performing Liquidity pools as of {date}
                         </div>
                         <Row>
-
-                            {mapToTopPools(this.topPoolData)}
+                            <TopPool pool={this.topPoolData}></TopPool>
                         </Row>
                     </section>
                 </div>

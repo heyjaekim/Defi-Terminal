@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Row } from 'reactstrap';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import PercentSlider from "./PercentSlider.js";
 import Web3 from "web3";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { AiTwotoneCopy } from 'react-icons/ai';
+
+import "react-notifications/lib/notifications.css";
+import "react-notifications/lib/notifications.css";
+import { NotificationContainer } from "react-notifications";
+import { NotificationManager } from "react-notifications";
 
 class TopPool extends Component {
     constructor(props) {
@@ -11,7 +15,9 @@ class TopPool extends Component {
             token: 0,
             percent: 0,
             pair_token0_name: null,
-            pair_token1_name: null
+            pair_token1_name: null,
+            value: '',
+            copied: false,
         };
         this.token = props.token;
         this.totalTradeSize = props.totalTradeSize;
@@ -65,23 +71,60 @@ class TopPool extends Component {
             this.props.token.pair_token1_img = null;
         }
     };
-    //0x6eF026fC19F36E0747AAFDA652731Ce05441C4C1
+
+    // createNotification = async(type) => {        
+    //     switch (type) {
+    //         case 'success':
+    //             NotificationManager.success('paste from clipboard', 'Copied Success', 1000);
+    //             console.log("Copied Success");
+    //     }
+    // };
 
     render() {
         // console.log("t_id: " + this.props.token.t_id);
         // console.log("pair names: " + this.props.token.pair_token0_name + this.props.token.pair_token1_name);
         return (
             <React.Fragment>
-                    <div className="display_address_pair" >
-                        <button className="eth_icon"><img src={this.props.pool.pair_token0_img} alt=""></img></button>
-                        <button className="dollar_icon"><img src={this.props.pool.pair_token1_img} alt=""></img></button>
-                        <div className="eth_usdt_pair">
-                            <h5>  {this.props.pool.pair_token0_name} - {this.props.pool.pair_token1_name} </h5>
-                        </div>
-                        <div className="top_address">
-                            <input className="address-input" type="text" name="" value={this.props.pool.pair_addr}/>
-                        </div>
+                <NotificationContainer/>
+                <div className="top_performing_pair" >
+                    <button className="eth_icon"><img src={this.props.pool[0].pair_token0_img} alt=""></img></button>
+                    <button className="dollar_icon"><img src={this.props.pool[0].pair_token1_img} alt=""></img></button>
+                    <div className="eth_usdt_pair">
+                        <h5>  {this.props.pool[0].pair_token0_name} - {this.props.pool[0].pair_token1_name} </h5>
                     </div>
+                    <div className="top_address">
+                        <input className="address-input" type="text" name="" value={this.props.pool[0].pair_addr} />
+                        <CopyToClipboard className="clip_to_copy" style={{ cursor: "pointer" }} text={this.props.pool[0].pair_addr}
+                            onCopy={() => this.setState({ copied: true })} >
+                            <AiTwotoneCopy size="20px" />
+                        </CopyToClipboard>
+                    </div>
+                    <button className="eth_icon"><img src={this.props.pool[1].pair_token0_img} alt=""></img></button>
+                    <button className="dollar_icon"><img src={this.props.pool[1].pair_token1_img} alt=""></img></button>
+                    <div className="eth_usdt_pair">
+                        <h5>  {this.props.pool[1].pair_token0_name} - {this.props.pool[1].pair_token1_name} </h5>
+                    </div>
+                    <div className="top_address">
+                        <input className="address-input" type="text" name="" value={this.props.pool[1].pair_addr} />
+                        <CopyToClipboard className="clip_to_copy2" style={{ cursor: "pointer" }} text={this.props.pool[1].pair_addr}
+                            onCopy={() => this.setState({ copied: true })} >
+                            <AiTwotoneCopy size="20px" />
+                        </CopyToClipboard>
+                    </div>
+                    <button className="eth_icon"><img src={this.props.pool[2].pair_token0_img} alt=""></img></button>
+                    <button className="dollar_icon"><img src={this.props.pool[2].pair_token1_img} alt=""></img></button>
+                    <div className="eth_usdt_pair">
+                        <h5>  {this.props.pool[2].pair_token0_name} - {this.props.pool[2].pair_token1_name} </h5>
+                    </div>
+                    <div className="top_address">
+                        <input className="address-input" type="text" name="" value={this.props.pool[2].pair_addr} />
+                        <CopyToClipboard className="clip_to_copy3" style={{ cursor: "pointer" }} text={this.props.pool[2].pair_addr}
+                            onCopy={() => this.setState({ copied: true })} >
+                            <AiTwotoneCopy size="20px" />
+                        </CopyToClipboard>
+                    </div>
+                    {/* <button onClick={this.showNotification()}> Click Me! </button> */}
+                </div>
             </React.Fragment>
         );
     }

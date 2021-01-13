@@ -1,15 +1,18 @@
 .portfolio {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
-  background-color: #277da4;
+  background-color: var(--background-color);
 }
 
 .portfolio .portfolioHomeAttr {
   position: relative;
-  height: 95vh;
+  /* height: 95vh; */
+  height: 912px;
   max-width: 1600px;
   margin: 0 auto;
   padding: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
 }
 
 .box {
@@ -206,7 +209,7 @@
   font-size: 17px;
 }
 .portfolio .trading-rows2 .context3 {
-  margin-right: 275px;
+  margin-right: 200px;
   font-weight: bold;
   font-size: 17px;
 }
@@ -227,20 +230,58 @@
   color: #073d67;
 }
 
-.portfolio .eth-usdt-row {
-  margin-left: 20px;
-  margin-top: 10px;
+.portfolio .eth_usdt_row {
+  padding-left: 30px;
+  padding-top: 10px;
 }
+.eth_usdt_row h5{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--white-text);
+  font-weight: bold;
+  font-size: 18px;
+  padding-top: 6px;
+}
+
+.portfolio .display_default_pair{
+  display: inline-block;
+  position: relative;
+}
+
 
 .portfolio .eth_usdt_pair {
   display: inline;
   margin-left: 35px;
 }
 
-.portfolio .eth-dollar {
-  margin-left: 20px;
-  margin-top: 5px;
+.portfolio .eth-icon{
+  background: none;
+  position: absolute;
+  z-index: 1;
 }
+.portfolio .eth-icon:focus{
+  outline: none;
+  border: none;
+}
+.portfolio .eth-icon img{
+  width: 30px;  
+}
+
+.portfolio .dollar-icon{
+  background: none;
+  position: absolute;
+  margin-left:17px;
+  margin-right:0px;
+}
+
+.portfolio .dollar-icon:focus{
+  outline: none;
+  border: none;
+}
+
+.portfolio .dollar-icon img{
+  width: 30px;
+}
+
 
 .portfolio .input-each-token-size1 {
   background-color: #51a0bf;
@@ -256,29 +297,53 @@
 
 .portfolio .eth-dateStaked {
   display: inline-block;
-  position: absolute;
-  margin-left: 257px;
+  /* position: absolute; */
+  margin-left: 79px;
 }
 .portfolio .eth-amountStaked {
   display: inline-block;
-  position: absolute;
-  margin-left: 507px;
+  margin-left: 69px;
 }
 .portfolio .eth-currentValue {
   display: inline-block;
-  position: absolute;
-  margin-left: 787px;
+  /* position: absolute; */
+  margin-left: 82px;
 }
 .portfolio .eth-profitSince {
   display: inline-block;
-  margin-left: 1060px;
+  margin-left: 180px;
+}
+.portfolio .eth-unstake_address {
+  display: inline-block;
 }
 
+.portfolio .eth-unstake_address .address {
+  display: inline-block;
+  width: 550px;
+  height: 40px;
+  margin-left: 60px;
+  margin-top: 3px;
+  padding-left: 20px;
+  font-size: 18px;
+  color: var(--white-text);
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: #63afca;
+}
+
+.portfolio .eth-percentslider {
+  display: inline-block;
+  padding-left: 90px;
+}
+.portfolio .eth-lp_amount {
+  display: inline-block;
+  padding-left: 42px;
+}
 .portfolio .eth-address {
   display: flex;
-  /* margin-left: 20px; */
-  /* width:200px; */
 }
+
 .portfolio .address {
   width: 550px;
   height: 40px;
@@ -319,9 +384,9 @@
 }
 
 .portfolio .cancelSubmit {
-  margin-left: 77%;
-  margin-top: 5%;
-  position:flex;
+  /* float:right; */
+  margin-left: 81.3%;
+  margin-top: 4%;
   position: absolute;
 }
 
@@ -357,32 +422,11 @@
   opacity: 1;
 }
 
-.portfolio .gas_speed_area {
-  margin-top: 50px;
-  margin-left: 40%;
-  margin-top: 5%;
-  align-items: center;
-  border-radius: 20px;
-  position: absolute;
-  display: inline-flex;
-  height: 40px;
-  width: 484px;
-  background-color: rgba(7, 61, 103, 0.5);
-  border: none;
-}
-.portfolio .gas_speed_area button {
+.portfolio .gas_speed {
+  /* display: inline-block; */
+  z-index:1;
   position: relative;
-  z-index: 2;
-  width: 161px;
-  font-size: 16px;
-  color: #fff;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: bold;
-  border: none;
-  background: none;
-  transition: color 0.3s ease-in-out;
-}
-.portfolio .gas_speed_area button:focus {
-  border: none;
-  outline: none;
+  float: right;
+  margin-top: 45px;
+  margin-right: 329px;
 }

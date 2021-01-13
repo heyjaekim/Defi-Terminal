@@ -1,7 +1,7 @@
 .initial {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
-  background-color: #277da4;
+  background-color: var(--background-color);
 }
 
 .initial-aft{
@@ -17,14 +17,74 @@
 }
 
 .initial .connectbox {
-  margin: auto;
-  width: 20%;
-  height: 50%;
+  margin: 0 auto;
+  width: 28%;
+  margin-bottom: 80px;
+}
+
+.initial .eth_usdt_pair_initial{
+  display: inline;
+  position: absolute;
+  padding-left: 10px;
+  padding-top: 5px;
+  color: var(--white-text);
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.initial .eth_usdt_pair_initial h5{
+  font-size: 32px;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.initial .eth_usdt_profit_arrow{
+  display: inline;
+  position: absolute;
+  padding-top: 5px;
+  padding-left: 230px;
+
+}
+.initial .eth_usdt_profit_arrow h5{
+  display: inline;
+
+  color: var(--white-text);
+  font-size: 28px;
 }
 
 .initial .connectbox input {
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 5px;
   width: 100%;
   font-size: 18px;
-  margin-top: 200px;
+  margin-top: 80px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  color: var(--white-text);
+  background-color: var(--button-fcolor);
+  cursor: pointer;
+}
+.initial .connectbox input:focus {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.initial .home{
+  background-color: var(--background-color);
+  position:relative;
+  padding: 300px 600px;
+  /* padding-left: 50%; */
+}
+
+.stake_page_img{
+  position:absolute;
+}
+
+.portfolio_page_img{
+  position:absolute;
+  margin: 100px 100px;
+
 }

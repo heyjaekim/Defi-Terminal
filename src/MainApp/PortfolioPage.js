@@ -3,10 +3,13 @@ import Web3 from "web3";
 import BigNumber from "bignumber.js";
 import TokenInfo from '../components/TokenInfo.js'
 import TokenAddr from '../components/TokenAddr.js'
-import { GasSpeedAnimationBox } from '../components/styles.js'
-import { Row, Col } from 'reactstrap';
+import { AiOutlineQuestionCircle } from 'react-icons/ai';
+import { Row } from 'reactstrap';
 import { PieChart } from 'react-minimal-pie-chart';
 import '../components/css/PortfolioPage.css';
+import GasSlider from "../components/GasSlider.js";
+import TopPool from "../components/TopPool.js";
+
 
 class StakePage extends React.Component {
     constructor(props) {
@@ -25,72 +28,21 @@ class StakePage extends React.Component {
             gasSpeed: 0,
             unstakeView: false,
         };
-        this.token1 = props.token1; /*                                                                                                       */
-        this.token2 = props.token2; /* Allocation Percent 사용시 Sub Token들의 합이 Trade Size 보다 클 경우 자동 재분배 하기 위한 props variable */
-        this.token3 = props.token3; /* (미완성 부분)                                                                                          */
-        this.token4 = props.token4; /*                                                                                                       */
         this.SetStake = props.SetStake;
         this.ConnectWallet = props.ConnectWallet;
         this.EtherBalance = props.EtherBalance;
         this.TotalInvestment = props.TotalInvestment;
         this.TotalInvestmentUSD = props.TotalInvestmentUSD;
         this.WalletAddress = props.WalletAddress;
-        this.UsdBalance = props.USDBalance;
         this.GasSpeed = props.GasSpeed;
 
         this.SubmitSetTrades = props.SubmitSetTrades; /* Onclick Submit button to proceed Tokens towards designated Addresses */
         this.IsConnectedMetaMask = props.IsConnectedMetaMask;
         this.IsStake = props.Stake;
         this.gasSpeed = props.gasSpeed;
-
+        this.topPoolData = props.topPoolData;
         this.tokenData = props.tokenData;
     };
-    // App.js에서 받은 tokenData Props
-    /*
-    default_t_id: 'default_'+this.state.t_id.toString(),
-    address_t_id: 'address_'+this.state.t_id.toString(),
-    uniswap_pair_abi: this.state.uniswap_pair_abi,
-    erc20_abi: this.state.erc20_abi,
-    pairLeft: 'ETH',
-    pairRight: 'USD',
-    dateStaked: '',
-    amountStaked: 0,
-    isProfit: false,
-
-    profitSince: '', // Need to check if the address's pair token is currently profit taking since the date staked
-    
-    pair_cont: null,
-    pair_addr: '',
-    pair_cont: null,
-    pair_token0: null,
-    pair_token1: null,
-    pair_token0_name: '',
-    pair_token1_name: '',
-    pair_token0_img: null,
-    pair_token1_img: null,
-
-    //token price 및 profit 측정하는데 필요한 요소들
-    tokenName: 'token_' + this.state.t_id.toString(),
-    tokenSize: 0,
-    tokenSizeInUSD: 0,
-
-    // 실시간 currentTokenValue가 업데이트 되어야함
-    currentTokenValue: 0, 
-    currentUsdValue: 0,
-
-    // to change lp amount (variable placed in TokenAddr.js)
-    lpAmtEth: 0,    
-    lpAmtUsd: 0,
-
-    //percent box 만들때 필요한 요소들
-    percentAniBox: 'percent_animation_box_' + this.state.t_id.toString(),
-    selectedPercent: 0,
-    percent0: 'percent0_' + this.state.t_id.toString(),
-    percent25: 'percent25_' + this.state.t_id.toString(),
-    percent50: 'percent50_' + this.state.t_id.toString(),
-    percent75: 'percent75_' + this.state.t_id.toString(),
-    percent100: 'percent100_' + this.state.t_id.toString()
-    */
 
     static defaultProps = {
         EtherBalance: 3000,
@@ -211,85 +163,21 @@ class StakePage extends React.Component {
         }
     }
 
-    /* Handle Token Size Start
-    Sub ETH Token Size를 나머지 Sub ETH Token Size들과 합하여 Trade Size(ETH)에 보이도록 하는 함수 */
-    handleToken1Change = async (evt) => {
-        evt.preventDefault();
-        let token1 = Number(evt.target.value);
-        console.log("handleToken1Change", token1);
-        let trade_size = token1 + this.state.token2 + this.state.token3 + this.state.token4 + this.state.token5
+    /* Handle Gas Speed
+    gas 가격 기준을 불러와서 이 함수에 적용 */
+    SetGasSpeed = async (value) => {
         this.setState({
-            token1: token1,
-            autoTradeSize: trade_size
+            gasCost: value / this.state.maxGasCost
         });
-        console.log("handleToken1Change", trade_size, token1, this.state.token1, this.state.autoTradeSize);
-    };
-    handleToken2Change = evt => {
-        const token2 = Number(evt.target.value);
-        this.setState(prevState => ({
-            token2,
-            autoTradeSize: prevState.token1 + token2 + prevState.token3 + prevState.token4 + prevState.token5
-        }));
-    };
-    handleToken3Change = evt => {
-        const token3 = Number(evt.target.value);
-        this.setState(prevState => ({
-            token3,
-            autoTradeSize: prevState.token1 + prevState.token2 + token3 + prevState.token4 + prevState.token5
-        }));
-    };
-    handleToken4Change = evt => {
-        const token4 = Number(evt.target.value);
-        this.setState(prevState => ({
-            token4,
-            autoTradeSize: prevState.token1 + prevState.token2 + prevState.token3 + token4 + prevState.token5
-        }));
-    };
-    handleToken5Change = evt => {
-        const token5 = Number(evt.target.value);
-        this.setState(prevState => ({
-            token5,
-            autoTradeSize: prevState.token1 + prevState.token2 + prevState.token3 + prevState.token4 + token5
-        }));
-    };
+    }
 
-    /* Handle Gas Speed 
-       gas speed slow: 0, medium: 1, fast: 2 */
-    handleGasSpeedSlow = evt => {
-        this.setState({
-            gasSpeed: 0
-        }, function () {
-            console.log(this.state.gasSpeed)
-        });
-    };
-    handleGasSpeedMedium = evt => {
-        this.setState({
-            gasSpeed: 1
-        }, function () { console.log(this.state.gasSpeed) });
-    };
-    handleGasSpeedFast = evt => {
-        this.setState({
-            gasSpeed: 2
-        }, function () { console.log(this.state.gasSpeed) });
-    };
-
-    /* Gas Speed Tab Animagtion */
-    gasSpeedAnimation(speed, ele) {
-        this.state.gasSpeedCosts.forEach((tab) => {
-            tab.style.color = "#8BAEC2";
-        });
-        if (speed === "slow") {
-            this.setState({ speed: "slow" });
-            document.getElementById("gas_speed_box").style.left = "0px";
-        } else if (speed === "medium") {
-            this.setState({ speed: "medium" });
-            document.getElementById("gas_speed_box").style.left = "161px";
-        } else if (speed === "fast") {
-            this.setState({ speed: "fast" });
-            document.getElementById("gas_speed_box").style.left = "323px";
+    updateTradeTotalSize = async () => {
+        let totalUnstake = 0;
+        for (let i = 0; i < this.state.tokenData.length; i++) {
+            totalUnstake += this.props.tokenData[i]['lpAmtEth']
         }
-        ele.style.color = "#fff";
-    };
+        this.props.EtherBalance -= totalUnstake.toFixed(6);
+    }
 
     render() {
 
@@ -306,6 +194,11 @@ class StakePage extends React.Component {
                 return (<TokenAddr token={token} key={i} />);
             });
         };
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        var today = new Date();
+        var date = monthNames[today.getMonth()] + ' ' + today.getDate() + '-' + today.getFullYear();
         return (
             <React.Fragment>
                 <div className="portfolio">
@@ -365,21 +258,20 @@ class StakePage extends React.Component {
                                 <div className="account-balance">
                                     <h4> Available Balance </h4>
                                     <div className="balance">
-                                        <h5 className="font-weight-bold">{this.EtherBalance}</h5>
-                                        <h5 className="font-weight-lighter"> ETH {this.USDBalance}</h5>
+                                        <span style={{fontWeight:"bold", fontSize:"30px"}}>{this.EtherBalance}</span>
+                                        <span style={{fontWeight:"lighter", fontSize:"20px" }}> ETH </span>
+                                        <span style={{fontWeight:"lighter", fontSize:"28px"}}> &nbsp;&nbsp; $ {this.props.UsdBalance}</span>
                                     </div>
                                     <h4> Total Investment </h4>
                                     <div>
                                         {/* Total Investment 대신에 this.tokenData의 tokenSize들의 합을 고려해봐야 함 */}
                                         <h5 className="investment font-weight-bold">{this.TotalInvestment} </h5>
-                                        <h5 className="investment font-weight-lighter "> ETH ${this.TotalInvestmentUSD}</h5>
+                                        <h5 className="investment font-weight-lighter "> ${this.TotalInvestmentUSD}</h5>
 
                                     </div>
                                 </div>
 
                             </Row>
-                            {/* <input type="number"> ETH - USDT </input>
-                            <input type="number"> ETH - USDT </input> */}
                         </div>
                         <Row>
                             <div className="wallet-connected">
@@ -434,20 +326,10 @@ class StakePage extends React.Component {
                         }
                         {/* <Row> */}
                         <div className="list-inline-item" id="trading_row_aft_btns">
-                            <div className="gas_speed_area">
-                                <GasSpeedAnimationBox id="gas_speed_box"></GasSpeedAnimationBox>
-                                <button type="button" id="slow" onClick={(e) => {
-                                    this.GasSpeed("slow");
-                                    this.gasSpeedAnimation("slow", e.target);
-                                }}>Slow</button>
-                                <button type="button" id="medium" onClick={(e) => {
-                                    this.GasSpeed("medium");
-                                    this.gasSpeedAnimation("medium", e.target);
-                                }}>Medium</button>
-                                <button type="button" id="fast" onClick={(e) => {
-                                    this.GasSpeed("fast");
-                                    this.gasSpeedAnimation("fast", e.target);
-                                }}>Fast</button>
+                            <div className="gas_speed">
+                                <span className="gas_speed_content"> Speed vs. gas cost (ETH / USD) </span><span className="qmark"><AiOutlineQuestionCircle size="25px" color="#073d67" /></span>
+                                <GasSlider SetGasSpeed={this.SetGasSpeed} />
+                                <div>$ {this.state.gasCost} / $ {this.state.maxGasCost} </div>
                             </div>
                             <div className="cancelSubmit">
                                 <input type="button" className="cancel" value="Cancel" onClick={this.setUnstakeView} />
@@ -457,6 +339,16 @@ class StakePage extends React.Component {
                         {/* </Row> */}
 
 
+                    </section>
+                </div>
+                <div className="recommend_page">
+                    <section className="recommend_below">
+                        <div style={{ fontSize: '24px', color: '#fafafa', paddingBottom: '32px' }}>
+                            Top Performing Liquidity pools as of {date}
+                        </div>
+                        <Row>
+                            <TopPool pool={this.topPoolData}></TopPool>
+                        </Row>
                     </section>
                 </div>
             </React.Fragment>

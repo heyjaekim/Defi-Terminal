@@ -30,7 +30,7 @@
   /* display: flex; */
   position: relative;
   top: 180px;
-  left: 1vw;
+  left: 20px;
   font-size: 24px;
   color: var(--white-text);
 }
@@ -38,7 +38,7 @@
 .stakehome .trading_rows {
   position: relative;
   top: 190px;
-  left: 1vw;
+  left: 26px;
   font-size: 18px;
   color: var(--button-fcolor);
 }
@@ -53,11 +53,12 @@
 .stakehome .eth_usdt_row {
   /* display: relative; */
   padding-top: 200px;
-  padding-left: 1vw;
+  padding-left: 24px;
 }
 
 .display_default_pair {
   display: block;
+  padding-left: 12px;
 }
 .display_address_pair {
   display: block;
@@ -116,7 +117,7 @@
 
 .eth_token_size .token_size {
   display: inline-block;
-  margin-left: 155px;
+  margin-left: 125px;
 }
 .eth_token_size .token_size .input_each_token_size {
   background-color: var(--input-color);
@@ -133,7 +134,7 @@
 }
 
 .percent_slider {
-  padding-left: 55px;
+  padding-left: 68px;
 }
 
 .stakehome .adding_box {
@@ -206,10 +207,10 @@
 
 .stakehome .stake_box {
   position: absolute;
-  margin-left: 49%;
+  margin-left: 792px;
   z-index: 0;
   background-color: var(--box-color);
-  margin-top: 4vh;
+  margin-top: 72px;
   border-radius: 20px;
   width: 50%;
   height: 800px;
@@ -235,7 +236,7 @@
 }
 
 .content .size {
-  padding-top: 48px;
+  padding-top: 62px;
   color: #51a0bf;
 }
 .stakehome .investment {
@@ -275,7 +276,7 @@
   color: var(--white-text);
   padding-left: 24px;
   padding-right: 18px;
-  margin-left: 100px;
+  margin-left: 80px;
   font-size: 18px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -314,7 +315,7 @@
 .stake_button:hover {
   border: none;
   outline: none;
-  background-color: var(--white-text);
+  background-color: var(--button-fcolor);
   color: #073d67;
 }
 
@@ -332,6 +333,7 @@
 .recommend_page .recommend_below {
   padding-top: 45px;
   margin: 0 auto;
+  padding-left: 5px;
   position: relative;
   background-color: var(--box-color);
   height: 100vh;
@@ -339,7 +341,11 @@
   max-width: 1600px;
 }
 
-.display_address_pair .eth_icon {
+.top_performing_pair{
+  padding-left: 12px;
+}
+
+.top_performing_pair .eth_icon {
   padding-top: 4px;
   background: none;
   position: absolute;
@@ -347,15 +353,15 @@
   border: none;
   z-index: 2;
 }
-.display_address_pair .eth_icon:focus {
+.top_performing_pair .eth_icon:focus {
   outline: none;
   border: none;
 }
-.display_address_pair .eth_icon img {
+.top_performing_pair .eth_icon img {
   width: 28px;
 }
 
-.display_address_pair .dollar_icon {
+.top_performing_pair .dollar_icon {
   padding-top: 4px;
   background: none;
   outline: none;
@@ -364,13 +370,13 @@
   margin-left: 17px;
   margin-right: 0px;
 }
-.display_address_pair .dollar_icon:focus {
+.top_performing_pair .dollar_icon:focus {
   outline: none;
   border: none;
 }
-.display_address_pair .dollar_icon img {
+.top_performing_pair .dollar_icon img {
   border-radius: 100%;
-  background-color: white;
+  background-color: var(--white-text);;
   width: 29px;
 }
 
@@ -390,13 +396,86 @@
 }
 
 .recommend_below .top_address .address-input {
+  position: relative;
   background-color: #4983a3;
   border-radius: 20px;
   width: 580px;
   height: 40px;
   border: none;
-  color: white;
+  color: var(--white-text);
   padding-left: 24px;
   font-size: 18px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.recommend_below .clip_to_copy{
+  position: absolute;
+  left: 780px;
+  top: 120px;
+  /* top: 8px; */
+  background-color: #4983a3;
+  color: var(--white-text);;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+}
+.recommend_below .clip_to_copy{
+  position: absolute;
+  left: 780px;
+  top: 123px;
+  /* top: 8px; */
+  background-color: #4983a3;
+  color: var(--white-text);;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+}
+.recommend_below .clip_to_copy:active {
+  transform: translateY(2px);
+}
+.recommend_below .clip_to_copy:focus {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+.recommend_below .clip_to_copy2{
+  position: absolute;
+  left: 780px;
+  top: 184px;
+  /* top: 8px; */
+  background-color: #4983a3;
+  color: var(--white-text);;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+}
+.recommend_below .clip_to_copy2:active {
+  transform: translateY(2px);
+}
+.recommend_below .clip_to_copy2:focus {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: none;
+}
+.recommend_below .clip_to_copy3{
+  position: absolute;
+  left: 780px;
+  top: 247px;
+  /* top: 8px; */
+  background-color: #4983a3;
+  color: var(--white-text);;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+}
+.recommend_below .clip_to_copy3:active {
+  transform: translateY(2px);
+}
+.recommend_below .clip_to_copy3:focus {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: none;
 }
