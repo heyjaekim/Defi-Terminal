@@ -4,9 +4,6 @@
   background-color: var(--background-color);
 }
 
-.initial-aft{
-    display: none;
-}
 
 .initial .portfolioHomeAttr {
   position: relative;

@@ -2,6 +2,7 @@ import React from 'react';
 import { Row } from 'reactstrap';
 import Web3 from "web3";
 import BigNumber from "bignumber.js";
+import Spinner from 'react-bootstrap/Spinner'
 import '../components/css/ConnectedPage.css';
 import '../components/css/StakePage.css'
 import { AiFillPlusCircle, AiFillMinusCircle, AiOutlineQuestionCircle } from 'react-icons/ai';
@@ -24,13 +25,14 @@ class StakePage extends React.Component {
             manualTradeSize: 1, /* Stake 상태에서 Manual Trade Size 값을 지정하고 
                                     Allocation Percent 사용하여 (Trade Size * Allocation Percent) => Sub-Size Token을 계산 */
             gasCost: 0,
+            gasPrice: 0,
             maxGasCost: 10,
             t_id: 0,
             tokenData: [],
             totalTradeSize: 0, /* 각 Unipair의 Token Size 들의 값의 합 */
             limit: 0,
-            date: new Date(),
-
+            isConfirmed: false,
+            isProcessing: false,
         };
         this.topPoolData = props.topPoolData;
         this.WalletAddress = props.WalletAddress;
@@ -40,7 +42,10 @@ class StakePage extends React.Component {
         this.ConnectWallet = props.ConnectWallet;
         this.IsConnectedMetaMask = props.IsConnectedMetaMask;
         this.IsStake = props.Stake;
-
+        this.isConfirmRef = React.createRef();
+        this.handleConfirmMessageBox = this.handleConfirmMessageBox.bind(this);
+        this.isProcessingRef = React.createRef();
+        this.handleProcessingMessageBox = this.handleProcessingMessageBox.bind(this);
     };
 
     static defaultProps = {
@@ -267,6 +272,24 @@ class StakePage extends React.Component {
         this.setState({ totalTradeSize: total.toFixed(6) });
     }
 
+    handleConfirmMessageBox() {
+        this.setState({ isConfirmed: !this.state.isConfirmed });
+        this.isConfirmRef.current.focus();
+    }
+    
+    handleProcessingMessageBox() {
+        this.setState({
+            isProcessing: !this.state.isProcessing,
+            isConfirmed: false
+        });
+        this.isConfirmRef.current.focus();
+        this.isProcessingRef.current.focus();
+    }
+
+    clickGasQmark = () => {
+
+    }
+
     render() {
         const mapToTestTokenStake = (data) => {
             return data.map((token, i) => {
@@ -277,7 +300,7 @@ class StakePage extends React.Component {
             "July", "August", "September", "October", "November", "December"
         ];
         var today = new Date();
-        var date = monthNames[today.getMonth()] + ' ' + today.getDate() + '-' + today.getFullYear();        
+        var date = monthNames[today.getMonth()] + ' ' + today.getDate() + '-' + today.getFullYear();
         return (
             <React.Fragment>
                 <div className="stakehome">
@@ -349,21 +372,54 @@ class StakePage extends React.Component {
                                     <div id="detail_select_area2" style={{ display: 'flex' }}>
                                         <div className="cancel_submit">
                                             <button className="stake_button" onClick={this.cancelToResetStates}><h5 className="button-context">Reset</h5></button>
-                                            <button className="stake_button" onClick={this.submitTrades}><h5 className="button-context">Submit</h5></button>
+                                            <button className="stake_button" onClick={this.handleConfirmMessageBox}><h5 className="button-context">Submit</h5></button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </Row>
                         <Row>
-                            <div className="gas_speed">
-                                <span className="gas_speed_content"> Speed vs. gas cost (ETH / USD) </span><span className="qmark"><AiOutlineQuestionCircle size="25px" color="#073d67" /></span>
+                            <section className="gas_speed">
+                                <span className="gas_speed_content"> Speed vs. gas cost (ETH / USD) </span><span className="qmark">
+                                    <AiOutlineQuestionCircle size="25px" color="#073d67" onClick={this.clickGasQmark()} />
+                                </span>
                                 <GasSlider SetGasSpeed={this.SetGasSpeed} />
-                                <div>$ {this.state.gasCost} / $ {this.state.maxGasCost} </div>
-                            </div>
+                                <div>
+                                    $ {this.state.gasCost} / $ {this.state.maxGasCost}
+                                </div>
+                            </section>
                         </Row>
 
-
+                        <Row>
+                            <section className={`stake_confirm_message ${this.state.isConfirmed ? "active" : "inactive"}`} ref={this.isConfirmRef}>
+                                <div className="inner_message">
+                                    You are staking <p>{this.state.totalTradeSize} ETH</p> in <img src="images/eth_dollar.png" width="55px"></img>
+                                    <p> ETH - USDT</p>
+                                    <br /><br />
+                                    from: <p>{this.WalletAddress}</p>
+                                    <br /><br />
+                                    The estimated transaction amount including
+                                    <br /><br />
+                                    gas cost is: <p>{this.state.gasCost}</p> or <p>$ {this.state.gasPrice} </p>
+                                </div>
+                                <div className="stake_confirm_buttons">
+                                    <button className="flex-item" onClick={this.handleConfirmMessageBox}>Cancel</button>
+                                    <button className="flex-item" onClick={() => { this.handleProcessingMessageBox(); this.submitTrades(); }}>Confirm</button>
+                                </div>
+                            </section>
+                        </Row>
+                        <Row>
+                            <section className={`stake_processing_message ${this.state.isProcessing ? "active" : "inactive"}`} ref={this.isProcessingRef}>
+                                <div className="inner_message">
+                                    Thank you! Your transaction is currently being processed.<br></br>
+                                    It can take about 15 seconds.<br></br><br></br><br></br>
+                                    <Spinner animation="border" variant="light" />
+                                </div>
+                                <div className="stake_processing_button">
+                                    <button className="flex-item" onClick={this.handleProcessingMessageBox}>Cancel</button>
+                                </div>
+                            </section>
+                        </Row>
                     </section>
                 </div>
                 <div className="recommend_page">
@@ -376,6 +432,7 @@ class StakePage extends React.Component {
                         </Row>
                     </section>
                 </div>
+
             </React.Fragment>
         );
     }

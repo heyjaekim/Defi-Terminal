@@ -1,6 +1,8 @@
 import React from 'react';
 import Web3 from "web3";
 import BigNumber from "bignumber.js";
+import TokenPercent from '../components/TokenPercent.js'
+import TokenPair from '../components/TokenPair.js'
 import TokenInfo from '../components/TokenInfo.js'
 import TokenAddr from '../components/TokenAddr.js'
 import { AiOutlineQuestionCircle } from 'react-icons/ai';
@@ -27,6 +29,7 @@ class StakePage extends React.Component {
             stake: true,
             gasSpeed: 0,
             unstakeView: false,
+            pieChartData: [],
         };
         this.SetStake = props.SetStake;
         this.ConnectWallet = props.ConnectWallet;
@@ -36,7 +39,6 @@ class StakePage extends React.Component {
         this.WalletAddress = props.WalletAddress;
         this.GasSpeed = props.GasSpeed;
 
-        this.SubmitSetTrades = props.SubmitSetTrades; /* Onclick Submit button to proceed Tokens towards designated Addresses */
         this.IsConnectedMetaMask = props.IsConnectedMetaMask;
         this.IsStake = props.Stake;
         this.gasSpeed = props.gasSpeed;
@@ -64,6 +66,42 @@ class StakePage extends React.Component {
                 document.getElementById("medium"),
                 document.getElementById("fast")
             ]
+        });
+        this.getPercentageData();
+    }
+
+    getPercentageData = async () => {
+        const data = [{
+            color: "#63afca",
+            title: "possessPercent",
+            value: 0,
+            pair: [],
+        },
+        {
+            color: "#073D67",
+            title: "possessPercent2",
+            value: 0,
+            pair: [],
+        },
+        {
+            color: "#277da4",
+            title: "possessPercent3",
+            value: 0,
+            pair: [],
+        }];
+        let tempData = [];
+        let tokenData = this.props.tokenData;
+        tokenData.sort((a,b) => (a.tokenSize < b.tokenSize) ? 1 : -1);
+        for(let i=0; i<tokenData.length; i++){
+            data[i].value = tokenData[i].tokenSize;
+            data[i].pair = [tokenData[i].pair_token0_name, tokenData[i].pair_token1_name];
+            tempData.push(data[i]);
+        }
+        console.log(tempData);
+        this.setState({
+            pieChartData: tempData
+        },function(){
+            console.log(this.state.pieChartData);
         });
     }
 
@@ -150,12 +188,12 @@ class StakePage extends React.Component {
 
     /* Unstake 버튼 누르면 Address View 로 변환 */
     setUnstakeView = () => {
-        if (!this.state.unstakeView){
+        if (!this.state.unstakeView) {
             document.getElementById("trading_row_bef").style.display = "none";
             document.getElementById("trading_row_aft").style.display = "block";
             document.getElementById("trading_row_aft_btns").style.display = "block";
             this.setState({ unstakeView: !this.state.unstakeView });
-        } else{
+        } else {
             document.getElementById("trading_row_bef").style.display = "block";
             document.getElementById("trading_row_aft").style.display = "none";
             document.getElementById("trading_row_aft_btns").style.display = "none";
@@ -180,10 +218,16 @@ class StakePage extends React.Component {
     }
 
     render() {
-
-        // setData(sorted);
-        // console.log(this.state.tokenData);
-        // console.log(this.state.allocOverflowDet);
+        const mapToTokenPercent = (data) => {
+            return data.map((token, i) => {
+                return (<TokenPercent token={token} totalSize={this.TotalInvestment} key={i} />);
+            });
+        };
+        const mapToTokenPair = (data) => {
+            return data.map((token, i) => {
+                return (<TokenPair token={token} key={i} />);
+            });
+        };
         const mapToTestTokenInfo = (data) => {
             return data.map((token, i) => {
                 return (<TokenInfo token={token} key={i} />);
@@ -216,35 +260,16 @@ class StakePage extends React.Component {
                                         lineWidth={35}
                                         labelPosition={50}
                                         paddingAngle={5}
-                                        data={[
-                                            {
-                                                color: "#277da4",
-                                                title: "One",
-                                                value: 20,
-                                            },
-                                            {
-                                                color: "#073D67",
-                                                title: "Two",
-                                                value: 40,
-                                            },
-                                            {
-                                                color: "#63afca",
-                                                title: "Three",
-                                                value: 40,
-                                            },
-                                        ]}
+                                        data={this.state.pieChartData}
                                     />
                                 </div>
                                 <div className="percentSector">
-                                    <input className="possessPercent" type="percent" value="40%" /><br />
-                                    <input className="possessPercent2" type="percent" value="40%" /><br />
-                                    <input className="possessPercent3" type="percent" value="20%" /><br />
+                                    {mapToTokenPercent(this.state.pieChartData)}
                                 </div>
                                 <div className="unipair">
-                                    <h5 className="pair1"> ETH - USDT </h5>
-                                    <h5 className="pair2"> ETH - USDT </h5>
-                                    <h5 className="pair3"> ETH - USDT </h5>
+                                    {mapToTokenPair(this.state.pieChartData)}
                                 </div>
+                                
                                 <div className="account-totalprofit">
                                     <h5 className="cumulative"> Cumulative Account Profit </h5>
                                     <img width="60px" height="100px" src="./images/green-up-profit.png" alt="cumulative account profit"></img>
@@ -258,9 +283,9 @@ class StakePage extends React.Component {
                                 <div className="account-balance">
                                     <h4> Available Balance </h4>
                                     <div className="balance">
-                                        <span style={{fontWeight:"bold", fontSize:"30px"}}>{this.EtherBalance}</span>
-                                        <span style={{fontWeight:"lighter", fontSize:"20px" }}> ETH </span>
-                                        <span style={{fontWeight:"lighter", fontSize:"28px"}}> &nbsp;&nbsp; $ {this.props.UsdBalance}</span>
+                                        <span style={{ fontWeight: "bold", fontSize: "30px" }}>{this.EtherBalance}</span>
+                                        <span style={{ fontWeight: "lighter", fontSize: "20px" }}> ETH </span>
+                                        <span style={{ fontWeight: "lighter", fontSize: "28px" }}> &nbsp;&nbsp; $ {this.props.UsdBalance}</span>
                                     </div>
                                     <h4> Total Investment </h4>
                                     <div>

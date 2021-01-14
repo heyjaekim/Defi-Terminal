@@ -61,6 +61,7 @@ class TokenAddr extends React.Component {
                             <input className="address" type="text" value={this.props.token.pair_addr} readOnly />
                         </div>
                         <div className="eth-percentslider">
+                            <span>{this.props.token.tokenSize} (ETH) </span>
                             <PercentSlider SetTokenAmount={this.SetTokenAmount} />
                         </div>
                         <div className="eth-lp_amount">
@@ -70,9 +71,6 @@ class TokenAddr extends React.Component {
                         </div>
                     </div>
                 </Row>
-                {/* <input className="address" type="text" value={this.token.address} readOnly />
-                <div className="percent_slider">
-                </div> */}
             </React.Fragment>
         );
     }

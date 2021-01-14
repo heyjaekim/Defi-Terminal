@@ -267,7 +267,7 @@
 }
 
 .portfolio .dollar-icon{
-  background: none;
+  border-radius: 100%;
   position: absolute;
   margin-left:17px;
   margin-right:0px;

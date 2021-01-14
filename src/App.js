@@ -18,8 +18,8 @@ class App extends React.Component {
       SmartContract: null,
       SmartContractAddr: "0x65C025412411DB5E6ff1F8F51D767078FB07f451", //[MainNet] // "0xe1A712878786A2993C3Ba5a3CABC62423D601F35" EasyDefi[KOVAN]
       SmartContractABI: [{ "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "id", "type": "uint256" }, { "indexed": false, "internalType": "address", "name": "user", "type": "address" }, { "indexed": false, "internalType": "address", "name": "pair", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amt_lp_usd", "type": "uint256" }], "name": "Log", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }], "name": "OwnershipTransferred", "type": "event" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "CheckTokensFromPair", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "DAI", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "GetLPTokenBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "GetLPUSDBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }, { "internalType": "uint256", "name": "_amount", "type": "uint256" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }], "name": "GetLPWorth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "GetResidualBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_ethamount", "type": "uint256" }, { "internalType": "address", "name": "_token", "type": "address" }], "name": "GetTokenFromEth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "address", "name": "", "type": "address" }], "name": "LPTokenBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "address", "name": "", "type": "address" }], "name": "LPUSDBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_fee", "type": "uint256" }], "name": "SetFee", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }, { "internalType": "address", "name": "_target", "type": "address" }, { "internalType": "uint256", "name": "_amt", "type": "uint256" }], "name": "StakeLP", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "_pair_list", "type": "address[]" }, { "internalType": "uint256[]", "name": "_amt_list", "type": "uint256[]" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }, { "internalType": "uint256", "name": "_deadline", "type": "uint256" }], "name": "StakeLPList", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "_pair", "type": "address[]" }, { "internalType": "uint256[]", "name": "_amt", "type": "uint256[]" }], "name": "TransferLPList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "USD", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "USDC", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "USDT", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }, { "internalType": "addresspayable", "name": "target", "type": "address" }, { "internalType": "uint256", "name": "amtLP", "type": "uint256" }], "name": "WithdrawLP", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "_pair", "type": "address[]" }, { "internalType": "uint256[]", "name": "_amt", "type": "uint256[]" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }, { "internalType": "uint256", "name": "_deadline", "type": "uint256" }], "name": "WithdrawLPList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "deadline", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_amount", "type": "uint256" }], "name": "emergencyETHWithdrawal", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_token", "type": "address" }, { "internalType": "uint256", "name": "_amount", "type": "uint256" }], "name": "emergencyTokenWithdrawal", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "fee", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "isOwner", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maxSlippage", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pair", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "percentage_unit", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "token0", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "token1", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "uniswap_fee", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "stateMutability": "payable", "type": "receive" }],
-      EtherBalance: 2.49430009,
-      TotalInvestment: 0,
+      EtherBalance: 0,
+      TotalInvestment: 3.34691356,
       TotalInvestmentUSD: 0,
       USDBalance: 0,
       WalletAddress: "Default Example Address",
@@ -76,7 +76,7 @@ class App extends React.Component {
           pair_token1_img: './images/dollar_icon.png',
           // token price 및 profit 측정하는데 필요한 요소들
           tokenName: 'token_1',
-          tokenSize: 1.12345678,
+          tokenSize: 2.22345678,
           tokenSizeInUSD: 0,
           currentTokenValue: 0, /* 실시간 currentTokenValue가 업데이트 되어야함 */
           currentUsdValue: 0,
@@ -120,15 +120,15 @@ class App extends React.Component {
 
   /* 첫 페이지 시작 시 자동으로 기본 정보 업데이트 실행 */
   async componentDidMount() {
-    await this.UpdateInfo();
-    await this.handleConnectYourWallet();
+    // await this.UpdateInfo();
+    // await this.handleConnectYourWallet();
   }
 
   /* ConnectedPage.js에서 User가 update state할 때마다 UpdateInfo 비동기 함수 실행 */
   UpdateInfo = async () => {
 
     // 비동기 MetaMask(Web3) 연결
-    await this.ConnectMetaMask();
+    // await this.ConnectMetaMask();
     // Get MetaMask Ether Balance
     let accounts;
     try {
@@ -143,7 +143,6 @@ class App extends React.Component {
         SmartContract: smartcontract,
         EtherBalance: parseFloat(etherBalance).toFixed(8),
         USDBalance: parseFloat(etherBalance * Number(usd)).toFixed(2),
-        IsConnectedMetaMask: true,
         WalletAddress: accounts[0],
       })
 
@@ -160,7 +159,8 @@ class App extends React.Component {
       this.web3 = new Web3(window.ethereum);
       try {
         await window.ethereum.enable();
-        this.setState({ loggedIn: true });
+        await this.UpdateInfo();
+        this.setState({ loggedIn: true, IsConnectedMetaMask: true });
       } catch (error) {
         console.log(`User denied account access error : ${error}`);
       }
@@ -221,72 +221,73 @@ class App extends React.Component {
   }
 
   /* Connect Your Wallet 누르면 initial page를 가리고 stake page가 나오도록 */
-  handleConnectYourWallet = async () => {
-    if (this.state.loggedIn) {
-      this.setState({ loggedIn: true });
-      document.getElementById("initial_bef").style.display = "none";
-      document.getElementById("initial_aft").style.display = "block";
-    } else {
-      document.getElementById("initial_bef").style.display = "block";
-      document.getElementById("initial_aft").style.display = "none";
-    }
-  }
+  // handleConnectYourWallet = async () => {
+  //   if (this.state.loggedIn) {
+  //     this.setState({ loggedIn: true });
+  //     document.getElementById("initial_bef").style.display = "none";
+  //     document.getElementById("initial_aft").style.display = "block";
+  //   } else {
+  //     document.getElementById("initial_bef").style.display = "block";
+  //     document.getElementById("initial_aft").style.display = "none";
+  //   }
+  // }
 
   render() {
     console.log("from StakePage.js update tokenData: ", this.state.tokenData);
+    console.log("refresh");
     return (
       <React.Fragment>
-        <div className="initial" id="initial_bef">
-          <ConnectMask topPoolData={this.state.topPoolData} ConnectMetaMask={this.ConnectMetaMask} handleConnectYourWallet={this.handleConnectYourWallet} />
-        </div>
-        <div className="initial-aft" id="initial_aft">
-          <BrowserRouter basename={'/'} >
-            <Navbar WalletAddress={this.state.WalletAddress} />
-            <Switch>
-              <Route exact path={`${process.env.PUBLIC_URL}/`}
-                render={props => (
-                  <StakePage
-                    EtherBalance={this.state.EtherBalance}
-                    TotalInvestment={this.state.TotalInvestment}
-                    TotalInvestmentUSD={this.state.TotalInvestmentUSD}
-                    SetTokenData={this.SetTokenData}
-                    ConnectWallet={this.ConnectWallet}
-                    WalletAddress={this.state.WalletAddress}
-                    UsdBalance={this.state.USDBalance}
-                    IsConnectedMetaMask={this.state.IsConnectedMetaMask}
-                    SubmitSetTrades={this.SubmitSetTrades}
-                    IsStake={this.state.Stake}
-                    topPoolData={this.state.topPoolData}
-                  />
-                )}
-              />
-              <Route exact path={`${process.env.PUBLIC_URL}/portfolio`}
-                render={props => (
-                  <PortfolioPage
-                    EtherBalance={this.state.EtherBalance}
-                    TotalInvestment={this.state.TotalInvestment}
-                    TotalInvestmentUSD={this.state.TotalInvestmentUSD}
-                    // tokenData={this.state.tokenData}
-                    tokenData={this.state.testTokenData}
-                    SetTokenData={this.SetTokenData}
-                    ConnectWallet={this.ConnectWallet}
-                    WalletAddress={this.state.WalletAddress}
-                    UsdBalance={this.state.USDBalance}
-                    IsConnectedMetaMask={this.state.IsConnectedMetaMask}
-                    SubmitSetTrades={this.SubmitSetTrades}
-                    IsStake={this.state.Stake}
-                    topPoolData={this.state.topPoolData}
-                  />
-                )}
-              />
-              <Route exact path={`${process.env.PUBLIC_URL}/about`}
-                render={props => (
-                  <AboutPage />
-                )}
-              />
-            </Switch>
-          </BrowserRouter>
-        </div>
+        {this.state.IsConnectedMetaMask ?
+            <BrowserRouter basename={'/'} >
+              <Navbar WalletAddress={this.state.WalletAddress} />
+              <Switch>
+                <Route exact path={`${process.env.PUBLIC_URL}/`}
+                  render={props => (
+                    <StakePage
+                      EtherBalance={this.state.EtherBalance}
+                      TotalInvestment={this.state.TotalInvestment}
+                      TotalInvestmentUSD={this.state.TotalInvestmentUSD}
+                      SetTokenData={this.SetTokenData}
+                      ConnectWallet={this.ConnectWallet}
+                      WalletAddress={this.state.WalletAddress}
+                      UsdBalance={this.state.USDBalance}
+                      IsConnectedMetaMask={this.state.IsConnectedMetaMask}
+                      IsStake={this.state.Stake}
+                      topPoolData={this.state.topPoolData}
+                    />
+                  )}
+                />
+                <Route exact path={`${process.env.PUBLIC_URL}/portfolio`}
+                  render={props => (
+                    <PortfolioPage
+                      EtherBalance={this.state.EtherBalance}
+                      TotalInvestment={this.state.TotalInvestment}
+                      TotalInvestmentUSD={this.state.TotalInvestmentUSD}
+                      // tokenData={this.state.tokenData}
+                      tokenData={this.state.testTokenData}
+                      SetTokenData={this.SetTokenData}
+                      ConnectWallet={this.ConnectWallet}
+                      WalletAddress={this.state.WalletAddress}
+                      UsdBalance={this.state.USDBalance}
+                      IsConnectedMetaMask={this.state.IsConnectedMetaMask}
+                      IsStake={this.state.Stake}
+                      topPoolData={this.state.topPoolData}
+                    />
+                  )}
+                />
+                <Route exact path={`${process.env.PUBLIC_URL}/about`}
+                  render={props => (
+                    <AboutPage />
+                  )}
+                />
+              </Switch>
+            </BrowserRouter>
+          :
+          <div className="initial" >
+            <ConnectMask topPoolData={this.state.topPoolData} ConnectMetaMask={this.ConnectMetaMask} />
+          </div>
+
+        }
 
       </React.Fragment>
     );

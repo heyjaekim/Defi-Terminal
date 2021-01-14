@@ -1,68 +1,70 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useState, useEffect } from "react";
+
 import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
 import { IoWalletSharp, IoWalletOutline } from 'react-icons/io5';
-import { SidebarData } from "./SidebarData";
 import { Link } from 'react-router-dom';
 import './css/Navbar.css';
 import { IconContext } from "react-icons/lib";
 
-class Navbar extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            sidebar:false
+const useDetectOutsideClick = (el, initialState) => {
+    const [isActive, setIsActive] = useState(initialState);
+
+    useEffect(() => {
+        const onClick = e => {
+            if (el.current !== null && !el.current.contains(e.target)) {
+                setIsActive(!isActive);
+            }
         };
-    };
 
-    showSidebar = () => {
-        this.setState({sidebar:!this.state.sidebar});
-        console.log(this.state.sidebar);
-    }
+        if (isActive) {
+            window.addEventListener("click", onClick);
+        }
 
-    render() {
-        return (
-            <React.Fragment>
-                <IconContext.Provider value={{color:'white'}}>
-                <div className="home">
-                    <section className="navbar-attr">
-                        <div class="navbar-hamber" id="ConnectedPage-view" style={{display:"block"}}>
-                            <Link className="navbar-logo" to="/">
-                                <img src="images/Logo_White.png" alt="" height="57px" width="281.8px" />
-                            </Link>
-                            <Link to="#" className="menu-bars">
-                                <FaIcons.FaBars onClick={this.showSidebar}/>
-                            </Link>
-                            <div className="navbar-walletaddr">
-                                <h5> {this.props.WalletAddress}</h5>
-                                <h5 className="m"><IoWalletOutline/></h5>
-                            </div>
-                        </div>
-                        <nav className={this.state.sidebar ? "nav-menu active" : "nav-menu"}>
-                            <ul className="nav-menu-items" onClick={this.showSidebar} >
-                                <li className="navbar-toggle" >
-                                    <Link to="#" className="menu-bars">
-                                        <AiIcons.AiOutlineClose />
-                                    </Link>
-                                </li>
-                                {SidebarData.map((item, index) => {
-                                    return (
-                                        <li key={index} className={item.cName}>
-                                            <Link to={item.path}>
-                                                {item.icon}
-                                                <span className="menu-titles">{item.title}</span>
-                                            </Link>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </nav>
-                    </section>
+        return () => {
+            window.removeEventListener("click", onClick);
+        };
+    }, [isActive, el]);
+
+    return [isActive, setIsActive];
+};
+
+export default function Navbar(props) {
+    const dropdownRef = useRef(null);
+    const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+    const onClick = () => setIsActive(!isActive);
+
+    return (
+        <IconContext.Provider value={{ color: 'white' }}>
+            <div className="menu-container">
+                <Link className="navbar-logo" to="/">
+                    <img src="images/Logo_White.png" alt="" height="57px" width="281.8px" />
+                </Link>
+                <div className="navbar-walletaddr">
+                    <h5 className="m"><IoWalletOutline /></h5>
+                    <h5> {props.WalletAddress}</h5>
+                    <button onClick={onClick} className="menu-trigger">
+                        <FaIcons.FaBars size="32px" />
+                    </button>
                 </div>
-                </IconContext.Provider>
-            </React.Fragment>
-        );
-    }
-}
+                <nav
+                    ref={dropdownRef}
+                    className={`menu ${isActive ? "active" : "inactive"}`}
+                >
+                    <ul>
+                        <li>
+                            <Link to="/portfolio">Portfolio</Link>
+                        </li>
+                        <li>
+                            <Link to="/">Stake</Link>
+                        </li>
+                        <li className="last_menu">
+                            <Link to="/about">About</Link>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </IconContext.Provider>
+    );
 
-export default Navbar;
+}
