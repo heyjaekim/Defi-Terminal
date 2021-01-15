@@ -26,13 +26,14 @@ class StakePage extends React.Component {
                                     Allocation Percent 사용하여 (Trade Size * Allocation Percent) => Sub-Size Token을 계산 */
             gasCost: 0,
             gasPrice: 0,
-            maxGasCost: 10,
+            maxGasPrice: 0,
             t_id: 0,
             tokenData: [],
             totalTradeSize: 0, /* 각 Unipair의 Token Size 들의 값의 합 */
             limit: 0,
             isConfirmed: false,
             isProcessing: false,
+            date: '',
         };
         this.topPoolData = props.topPoolData;
         this.WalletAddress = props.WalletAddress;
@@ -59,8 +60,14 @@ class StakePage extends React.Component {
         this.BN = this.web3.utils.BN;
         let smartcontract = new this.web3.eth.Contract(this.state.SmartContractABI, this.state.SmartContractAddr);
 
+        /* today's date */
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"];
+        var today = new Date();
+
         this.setState({
             SmartContract: smartcontract,
+            date: monthNames[today.getMonth()] + ' ' + today.getDate() + '-' + today.getFullYear(),
         });
     }
 
@@ -100,7 +107,7 @@ class StakePage extends React.Component {
             lpAmtUsd: 0,
             // percent slider 만들때 필요한 요소들
             percentToken: 0,
-            etherBalance: this.props.EtherBalance
+            EtherBalance: this.props.EtherBalance
         }
         if (this.state.tokenData.length === 0) {
             document.getElementById("add_pool_display").style.display = "block";
@@ -132,9 +139,8 @@ class StakePage extends React.Component {
     submitTrades = async (isStake) => {
         if (this.props.IsConnectedMetaMask) {
             if (this.props.IsStake) {
-                console.log('invest')
                 this.SetTokenData(this.state.tokenData);
-                // this.Invest();
+                this.Invest();
 
             } else {
                 console.log('withdraw')
@@ -146,42 +152,30 @@ class StakePage extends React.Component {
     };
 
     Invest = async () => {
-        console.log("1 Investing !", this.state.token1, this.state.percent, this.props.gasSpeed);
-        console.log("2 Investing !", this.state.token2, this.state.percent2, this.props.gasSpeed);
-        console.log("3 Investing !", this.state.token3, this.state.percent3, this.props.gasSpeed);
+        let pair_list = [];
+        let wei_list = [];
+        let wei_amount = BigNumber(0);
 
         let response = await fetch("https://ethgasstation.info/api/ethgasAPI.json");
         let jsonData = await response.json();
         let avgGasPrice = Number(jsonData['average']) / 10;
         let fastGasPrice = Number(jsonData['fastest']) / 10;
 
-        // Invest Token
-        let wei1 = BigNumber(this.state.token1 * Math.pow(10, 18)); //eth to wei
-        wei1 = wei1.integerValue();//Math.floor( wei1 );
+        console.log("jsonData: ", jsonData);
+        console.log("avgGasPrice: ", avgGasPrice);
+        console.log("fastGasPrice: ", fastGasPrice);
 
-        let wei2 = BigNumber(this.state.token2 * Math.pow(10, 18)); //eth to wei
-        wei2 = wei2.integerValue(); //Math.floor( wei2 );
-
-        let wei3 = BigNumber(this.state.token3 * Math.pow(10, 18)); //eth to wei
-        wei3 = wei3.integerValue(); //Math.floor( wei3 );
-
-        let pair_list = [];
-        let wei_list = [];
-        let wei_amount = BigNumber(0);
-        if (wei1 !== 0) {
-            pair_list.push(this.state.pair1_addr);
-            wei_list.push(wei1.toString());
-            wei_amount = wei1.plus(wei_amount);
-        }
-        if (wei2 !== 0) {
-            pair_list.push(this.state.pair2_addr);
-            wei_list.push(wei2.toString());
-            wei_amount = wei2.plus(wei_amount);
-        }
-        if (wei3 !== 0) {
-            pair_list.push(this.state.pair3_addr);
-            wei_list.push(wei3.toString());
-            wei_amount = wei3.plus(wei_amount);
+        const tokenData = this.state.tokenData;
+        let wei;
+        for (let i = 0; i < tokenData.length; i++) {
+            console.log(`Token Data Index${i} Investing !`, tokenData[i].tokenSize);
+            let wei = BigNumber(tokenData[i].tokenSize * Math.pow(10, 18));
+            wei = wei.integerValue();//Math.floor( wei );
+            if (wei !== 0) {
+                pair_list.push(tokenData[i].pair_addr);
+                wei_list.push(wei.toString());
+                wei_amount = wei.plus(wei_amount);
+            }
         }
 
         // Gas Price
@@ -201,15 +195,15 @@ class StakePage extends React.Component {
 
         //Gas Estimate
         let gasEstimate = 0;
-        // await this.state.SmartContract.methods.StakeLPList([this.state.pair1_addr], [wei], 25, Date.now()+2000).estimateGas({from:this.props.WalletAddress,
-        //                                                                                                                                 value:wei
-        //                                                                                                                             }).then(function(gasAmount){
-        //                                                                                                                                 console.log(gasAmount)
-        //                                                                                                                                 gasEstimate = gasAmount;
-        //                                                                                                                             })
-        //                                                                                                                             .catch(function(error){
-        //                                                                                                                                 console.log(error)
-        //                                                                                                                             });;
+        await this.state.SmartContract.methods.StakeLPList([this.state.pair1_addr], [wei], 25, Date.now()+2000).estimateGas({from:this.props.WalletAddress,
+                                                                                                                                        value:wei
+                                                                                                                                    }).then(function(gasAmount){
+                                                                                                                                        console.log(gasAmount)
+                                                                                                                                        gasEstimate = gasAmount;
+                                                                                                                                    })
+                                                                                                                                    .catch(function(error){
+                                                                                                                                        console.log(error)
+                                                                                                                                    });;
         await this.state.SmartContract.methods.StakeLPList(pair_list, wei_list, 250, Date.now() + 2000)
             .estimateGas({
                 from: this.props.WalletAddress,
@@ -247,7 +241,7 @@ class StakePage extends React.Component {
     gas 가격 기준을 불러와서 이 함수에 적용 */
     SetGasSpeed = async (value) => {
         this.setState({
-            gasCost: value / this.state.maxGasCost
+            gasCost: (value / 100 * this.props.fastestGasPrice).toFixed(4)
         });
     }
 
@@ -259,6 +253,7 @@ class StakePage extends React.Component {
             total += this.state.tokenData[i]['tokenSize']
         }
         this.setState({ totalTradeSize: total.toFixed(6) });
+        this.setState({ totalTradeSize: total.toFixed(6) });
         if (this.state.tokenData.length === 0) {
             document.getElementById("add_pool_display").style.display = "none";
         }
@@ -269,21 +264,40 @@ class StakePage extends React.Component {
         for (let i = 0; i < this.state.tokenData.length; i++) {
             total += this.state.tokenData[i]['tokenSize']
         }
-        this.setState({ totalTradeSize: total.toFixed(6) });
+        if (total > this.props.EtherBalance){
+            this.setState({ totalTradeSize: this.props.EtherBalance });
+        } else {
+            this.setState({ totalTradeSize: total.toFixed(6) });
+        }
     }
 
     handleConfirmMessageBox() {
         this.setState({ isConfirmed: !this.state.isConfirmed });
         this.isConfirmRef.current.focus();
     }
-    
+
     handleProcessingMessageBox() {
+        if (this.state.isProcessing) {
+            this.setState({
+                isProcessing: !this.state.isProcessing,
+                isConfirmed: false
+            });
+        } else {
+            this.setState({
+                isProcessing: !this.state.isProcessing,
+                isConfirmed: false
+            });
+            this.isConfirmRef.current.focus();
+            this.isProcessingRef.current.focus();
+        }
+    }
+
+    handleDoneStaking() {
         this.setState({
-            isProcessing: !this.state.isProcessing,
-            isConfirmed: false
+            isProcessing: !this.state.isProcessing
         });
-        this.isConfirmRef.current.focus();
         this.isProcessingRef.current.focus();
+        console.log(this.state.isProcessing);
     }
 
     clickGasQmark = () => {
@@ -291,16 +305,13 @@ class StakePage extends React.Component {
     }
 
     render() {
-        const mapToTestTokenStake = (data) => {
+        const mapToTokenStaking = (data) => {
             return data.map((token, i) => {
-                return (<AddPool token={token} updateTradeTotalSize={this.updateTradeTotalSize} key={i} />);
+                return (<AddPool token={token} totalTradeSize={this.state.totalTradeSize} EtherBalance={this.props.EtherBalance} updateTradeTotalSize={this.updateTradeTotalSize} key={i} />);
             })
         }
-        const monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
-        var today = new Date();
-        var date = monthNames[today.getMonth()] + ' ' + today.getDate() + '-' + today.getFullYear();
+
+
         return (
             <React.Fragment>
                 <div className="stakehome">
@@ -339,7 +350,7 @@ class StakePage extends React.Component {
 
 
 
-                                {mapToTestTokenStake(this.state.tokenData)}
+                                {mapToTokenStaking(this.state.tokenData)}
 
 
                                 <div className="adding_box">
@@ -371,8 +382,16 @@ class StakePage extends React.Component {
 
                                     <div id="detail_select_area2" style={{ display: 'flex' }}>
                                         <div className="cancel_submit">
-                                            <button className="stake_button" onClick={this.cancelToResetStates}><h5 className="button-context">Reset</h5></button>
-                                            <button className="stake_button" onClick={this.handleConfirmMessageBox}><h5 className="button-context">Submit</h5></button>
+                                            <button className="stake_button" onClick={this.cancelToResetStates}>
+                                                <h5 className="button-context">
+                                                    Reset
+                                                </h5>
+                                            </button>
+                                            <button className="stake_button" onClick={this.handleConfirmMessageBox}>
+                                                <h5 className="button-context">
+                                                    Submit
+                                                </h5>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -385,7 +404,7 @@ class StakePage extends React.Component {
                                 </span>
                                 <GasSlider SetGasSpeed={this.SetGasSpeed} />
                                 <div>
-                                    $ {this.state.gasCost} / $ {this.state.maxGasCost}
+                                    $ {this.state.gasCost} / $ {this.props.fastestGasPrice}
                                 </div>
                             </section>
                         </Row>
@@ -400,11 +419,16 @@ class StakePage extends React.Component {
                                     <br /><br />
                                     The estimated transaction amount including
                                     <br /><br />
-                                    gas cost is: <p>{this.state.gasCost}</p> or <p>$ {this.state.gasPrice} </p>
+                                    gas cost is: <p>{this.state.gasCost}</p> or <p>$ {this.props.fastestGasPrice} </p>
                                 </div>
                                 <div className="stake_confirm_buttons">
                                     <button className="flex-item" onClick={this.handleConfirmMessageBox}>Cancel</button>
-                                    <button className="flex-item" onClick={() => { this.handleProcessingMessageBox(); this.submitTrades(); }}>Confirm</button>
+                                    <button className="flex-item" onClick={() => {
+                                        this.handleProcessingMessageBox(); this.submitTrades();
+                                        setTimeout(function() {
+                                            this.setState({isProcessing: !this.state.isProcessing})
+                                        }.bind(this), 3000);
+                                    }}>Confirm</button>
                                 </div>
                             </section>
                         </Row>
@@ -425,7 +449,7 @@ class StakePage extends React.Component {
                 <div className="recommend_page">
                     <section className="recommend_below">
                         <div style={{ fontSize: '24px', color: '#fafafa', paddingBottom: '32px' }}>
-                            Top Performing Liquidity pools as of {date}
+                            Top Performing Liquidity pools as of {this.state.date}
                         </div>
                         <Row>
                             <TopPool pool={this.topPoolData}></TopPool>

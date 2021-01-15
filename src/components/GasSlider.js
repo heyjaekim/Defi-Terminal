@@ -55,7 +55,7 @@ export default function GasSlider(props) {
   return (
     <div className={classes.root}>
       
-      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20}  onChange={(e, value)=> props.SetGasSpeed(value)} />
+      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={0}  onChangeCommitted={(e, value)=> props.SetGasSpeed(value)} />
       
     </div>
   );

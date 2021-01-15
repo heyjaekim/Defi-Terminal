@@ -4,7 +4,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { AiTwotoneCopy } from 'react-icons/ai';
 
 import "react-notifications/lib/notifications.css";
-import "react-notifications/lib/notifications.css";
 import { NotificationContainer } from "react-notifications";
 import { NotificationManager } from "react-notifications";
 

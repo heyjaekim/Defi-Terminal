@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row } from 'reactstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { PercentAnimationBox } from "./styles";
+import { AiTwotoneCopy } from 'react-icons/ai';
 import PercentSlider from "./PercentSlider.js";
 
 class TokenAddr extends React.Component {
@@ -11,28 +11,10 @@ class TokenAddr extends React.Component {
             token: 0,
             percent: 0,
             usd: 0,
+            copied: false,
         };
         this.token = props.token;
         this.updateTradeTotalSize = props.updateTradeTotalSize;
-    }
-
-    componentDidMount = async () => {
-        this.setState({
-            percentBoxs: [
-                document.getElementById(this.token.percent0),
-                document.getElementById(this.token.percent25),
-                document.getElementById(this.token.percent50),
-                document.getElementById(this.token.percent75),
-                document.getElementById(this.token.percent100)
-            ]
-        });
-    }
-
-    allocToSubTokenSize = async () => {
-        this.token.lpAmtEth = this.token.tokenSize * (this.state.percent / 100);
-        this.setState((state, props) => {
-            return { token: props.token.tokenSize * (state.percent / 100) }
-        });
     }
 
     SetTokenAmount = async (percentage) => {
@@ -59,15 +41,19 @@ class TokenAddr extends React.Component {
                         </div>
                         <div className="eth-unstake_address">
                             <input className="address" type="text" value={this.props.token.pair_addr} readOnly />
+                            <CopyToClipboard className="clip_to_copy" style={{ cursor: "pointer" }} text={this.props.token.pair_addr}
+                                onCopy={() => this.setState({ copied: true })} >
+                                <AiTwotoneCopy size="20px" />
+                            </CopyToClipboard>
                         </div>
                         <div className="eth-percentslider">
                             <span>{this.props.token.tokenSize} (ETH) </span>
                             <PercentSlider SetTokenAmount={this.SetTokenAmount} />
                         </div>
                         <div className="eth-lp_amount">
-                            <span style={{color:"#fafafa", fontSize:"22px"}}>{this.props.token.lpAmtEth} ETH</span>
+                            <span style={{ color: "#fafafa", fontSize: "22px" }}>{this.props.token.lpAmtEth} ETH</span>
                             <br></br>
-                            <span style={{color:"#fafafa", fontSize:"22px"}}>$ {this.props.token.lpAmtUsd}</span>
+                            <span style={{ color: "#fafafa", fontSize: "22px" }}>$ {this.props.token.lpAmtUsd}</span>
                         </div>
                     </div>
                 </Row>

@@ -1,9 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
-// import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,10 +43,11 @@ const PrettoSlider = withStyles({
 
 export default function PercentSlider(props) {
   const classes = useStyles();
+  // console.log(props.maxPercent);
   return (
     <div className={classes.root}>
       
-      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} onChange={(e, value)=> props.SetTokenAmount(value)} />
+      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={0} onChange={(e, value)=> props.SetTokenAmount(0, value)} onChangeCommitted={(e, value)=> props.SetTokenAmount(value, 0)} />
       
     </div>
   );

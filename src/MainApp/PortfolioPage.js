@@ -28,6 +28,7 @@ class StakePage extends React.Component {
             speed: "slow",
             stake: true,
             gasSpeed: 0,
+            maxGasCost: 5,
             unstakeView: false,
             pieChartData: [],
         };
@@ -205,13 +206,13 @@ class StakePage extends React.Component {
     gas 가격 기준을 불러와서 이 함수에 적용 */
     SetGasSpeed = async (value) => {
         this.setState({
-            gasCost: value / this.state.maxGasCost
+            gasCost: (value / 100 * this.props.fastestGasPrice).toFixed(4)
         });
     }
 
     updateTradeTotalSize = async () => {
         let totalUnstake = 0;
-        for (let i = 0; i < this.state.tokenData.length; i++) {
+        for (let i = 0; i < this.props.tokenData.length; i++) {
             totalUnstake += this.props.tokenData[i]['lpAmtEth']
         }
         this.props.EtherBalance -= totalUnstake.toFixed(6);
@@ -233,7 +234,7 @@ class StakePage extends React.Component {
                 return (<TokenInfo token={token} key={i} />);
             });
         };
-        const mapToTestTokenUnstake = (data) => {
+        const mapToTokenUnstaking = (data) => {
             return data.map((token, i) => {
                 return (<TokenAddr token={token} key={i} />);
             });
@@ -291,7 +292,7 @@ class StakePage extends React.Component {
                                     <div>
                                         {/* Total Investment 대신에 this.tokenData의 tokenSize들의 합을 고려해봐야 함 */}
                                         <h5 className="investment font-weight-bold">{this.TotalInvestment} </h5>
-                                        <h5 className="investment font-weight-lighter "> ${this.TotalInvestmentUSD}</h5>
+                                        <h5 className="investment font-weight-lighter ">&nbsp;&nbsp; ${this.TotalInvestmentUSD}</h5>
 
                                     </div>
                                 </div>
@@ -342,7 +343,7 @@ class StakePage extends React.Component {
                         </Row>
                         {this.state.unstakeView ?
                             <div id="unstake_aft">
-                                {mapToTestTokenUnstake(this.tokenData)}
+                                {mapToTokenUnstaking(this.tokenData)}
                             </div>
                             :
                             <div id="unstake_bef">
@@ -354,7 +355,7 @@ class StakePage extends React.Component {
                             <div className="gas_speed">
                                 <span className="gas_speed_content"> Speed vs. gas cost (ETH / USD) </span><span className="qmark"><AiOutlineQuestionCircle size="25px" color="#073d67" /></span>
                                 <GasSlider SetGasSpeed={this.SetGasSpeed} />
-                                <div>$ {this.state.gasCost} / $ {this.state.maxGasCost} </div>
+                                <div>$ {this.state.gasCost} / $ {this.props.fastestGasPrice} </div>
                             </div>
                             <div className="cancelSubmit">
                                 <input type="button" className="cancel" value="Cancel" onClick={this.setUnstakeView} />

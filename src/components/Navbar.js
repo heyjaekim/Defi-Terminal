@@ -53,13 +53,13 @@ export default function Navbar(props) {
                 >
                     <ul>
                         <li>
-                            <Link to="/portfolio">Portfolio</Link>
+                            <Link to="/portfolio" onClick={onClick}>Portfolio</Link>
                         </li>
                         <li>
-                            <Link to="/">Stake</Link>
+                            <Link to="/" onClick={onClick}>Stake</Link>
                         </li>
                         <li className="last_menu">
-                            <Link to="/about">About</Link>
+                            <Link to="/about" onClick={onClick}>About</Link>
                         </li>
                     </ul>
                 </nav>

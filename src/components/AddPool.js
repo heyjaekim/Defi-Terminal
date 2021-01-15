@@ -14,7 +14,7 @@ class AddPool extends Component {
             pair_token1_name: null
         };
         this.token = props.token;
-        this.totalTradeSize = props.totalTradeSize;
+        this.EtherBalance = props.EtherBalance;
         this.updateTradeTotalSize = props.updateTradeTotalSize;
     }
 
@@ -98,19 +98,31 @@ class AddPool extends Component {
 
     };
 
-    SetTokenAmount = async(percentage) => {
+    SetTokenAmount = async(percentage, value) => {
         // console.log("ether balance: ", this.props.token.etherBalance);
-        this.setState({
-            token: (parseFloat(percentage) / 100) * parseFloat(this.props.token.etherBalance)
-        });
-        this.props.token.tokenSize = this.state.token;
+        if (value !== 0){
+            this.setState({
+                token: (parseFloat(value) / 100) * parseFloat(this.props.token.EtherBalance)
+            });
+            this.props.token.tokenSize = this.state.token;
+            this.updateTradeTotalSize();
+        } else {
+            this.setState({
+                token: (parseFloat(percentage) / 100) * parseFloat(this.props.token.EtherBalance)
+            });
+            this.props.token.tokenSize = this.state.token;
+            this.updateTradeTotalSize();
+            // this.props.token.tokenSize = this.state.token;
+            // this.updateTradeTotalSize();
+        }
         // console.log( this.props.token.tokenSize);
-        this.updateTradeTotalSize();
     }
 
     render() {
         // console.log("t_id: " + this.props.token.t_id);
         // console.log("pair names: " + this.props.token.pair_token0_name + this.props.token.pair_token1_name);
+        // console.log("total trade size: ", this.props.totalTradeSize);
+        // console.log("ether balance: ", this.props.EtherBalance);
         return (
             <React.Fragment>
                 <Row>
