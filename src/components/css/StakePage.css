@@ -621,3 +621,15 @@
   color: var(--button-fcolor);
   background-color: #fafafa;
 }
+
+.invest_usd {
+  width: 600px;
+}
+
+.gascost_usd {
+  width: 600px;
+}
+
+.transc_usd {
+  width: 600px;
+}

@@ -171,7 +171,7 @@
   font-size: 17px;
 }
 .portfolio .trading-rows .context3 {
-  margin-right: 130px;
+  margin-right: 226px;
   font-weight: bold;
   font-size: 17px;
 }
@@ -204,12 +204,12 @@
   font-weight: bold;
 }
 .portfolio .trading-rows2 .context2 {
-  margin-right: 550px;
+  margin-right: 543px;
   font-weight: bold;
   font-size: 17px;
 }
 .portfolio .trading-rows2 .context3 {
-  margin-right: 200px;
+  margin-right: 206px;
   font-weight: bold;
   font-size: 17px;
 }
@@ -233,6 +233,7 @@
 .portfolio .eth_usdt_row {
   padding-left: 30px;
   padding-top: 10px;
+  padding-bottom: 70px;
 }
 .eth_usdt_row h5{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -244,12 +245,13 @@
 
 .portfolio .display_default_pair{
   display: inline-block;
-  position: relative;
+  position: absolute;
 }
 
 
 .portfolio .eth_usdt_pair {
   display: inline;
+  /* position: absolute; */
   margin-left: 35px;
 }
 
@@ -297,31 +299,34 @@
 
 .portfolio .eth-dateStaked {
   display: inline-block;
-  /* position: absolute; */
-  margin-left: 79px;
+  position: absolute;
+  margin-left: 287px;
 }
 .portfolio .eth-amountStaked {
   display: inline-block;
-  margin-left: 69px;
+  position:absolute;
+  margin-left: 533px;
 }
 .portfolio .eth-currentValue {
   display: inline-block;
-  /* position: absolute; */
-  margin-left: 82px;
+  position: absolute;
+  margin-left: 910px;
 }
 .portfolio .eth-profitSince {
   display: inline-block;
-  margin-left: 180px;
+  position:absolute;
+  margin-left: 1190px;
 }
 .portfolio .eth-unstake_address {
   display: inline-block;
+  position:absolute;
 }
 
 .portfolio .eth-unstake_address .address {
   display: inline-block;
   width: 550px;
   height: 40px;
-  margin-left: 60px;
+  margin-left: 268px;
   margin-top: 3px;
   padding-left: 20px;
   font-size: 18px;
@@ -334,11 +339,15 @@
 
 .portfolio .eth-percentslider {
   display: inline-block;
-  padding-left: 68px;
+  position: absolute;
+  z-index: 1;
+  padding-left: 908px;
 }
 .portfolio .eth-lp_amount {
   display: inline-block;
-  padding-left: 42px;
+  position: absolute;
+  padding-left: 1290px;
+  width: 2000px;
 }
 .portfolio .eth-address {
   display: flex;
@@ -384,8 +393,10 @@
 }
 
 .portfolio .cancelSubmit {
-  /* float:right; */
-  margin-left: 81.3%;
+  float:right;
+  width: 1600px;
+  /* margin-left: 86.3%; */
+  margin-left: 1305px;
   margin-top: 4%;
   position: absolute;
 }
@@ -425,10 +436,10 @@
 .portfolio .gas_speed {
   /* display: inline-block; */
   z-index:1;
-  position: relative;
+  position: absolute;
   float: right;
   margin-top: 45px;
-  margin-right: 329px;
+  margin-left: 926px;
 }
 
 .portfolio .clip_to_copy{

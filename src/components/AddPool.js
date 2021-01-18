@@ -98,6 +98,7 @@ class AddPool extends Component {
 
     };
 
+    /* 각 Address에 할당해줄 Token Size를 측정하기 위한 함수 */
     SetTokenAmount = async(percentage, value) => {
         // console.log("ether balance: ", this.props.token.etherBalance);
         if (value !== 0){

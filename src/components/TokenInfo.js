@@ -11,16 +11,16 @@ class TokenInfo extends React.Component {
                         <div className="display_default_pair" id="default_pair">
                             <button className="eth-icon"><img src={this.props.token.pair_token0_img} alt=""></img></button>
                             <button className="dollar-icon"><img src={this.props.token.pair_token1_img} alt=""></img></button>
-                            <h5 style={{paddingLeft:"93px"}}> {this.props.token.pairLeft} - {this.props.token.pairRight} </h5>
+                            <h5 style={{paddingLeft:"93px"}}> {this.props.token.pair_token0_name} - {this.props.token.pair_token1_name} </h5>
                         </div>
                         <div className="eth-dateStaked">
                             <h5> {this.props.token.dateStaked} </h5>
                         </div>
                         <div className="eth-amountStaked">
-                            <h5 className="font-weight-lighter"> {this.props.token.tokenSize} ETH (${this.props.token.tokenSizeInUSD}) </h5>
+                            <h5 className="font-weight-lighter"> {this.props.token.tokenSize} (${(this.props.token.tokenSize * this.props.USD).toFixed(3)}) </h5>
                         </div>
                         <div className="eth-currentValue">
-                            <h5 className="font-weight-lighter"> {this.props.token.currentTokenValue} ETH ( ${this.props.token.currentUsdValue}) </h5>
+                            <h5 className="font-weight-lighter"> {this.props.token.currentTokenValue} ( ${(this.props.token.currentTokenValue * this.props.USD).toFixed(3)}) </h5>
                         </div>
                         <div className="eth-profitSince">
                             <h5> <img src={this.props.token.profitSince[0] ? "./images/green-up-profit.png" : "./images/red-down-profit.png"}

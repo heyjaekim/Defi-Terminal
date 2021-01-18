@@ -18,8 +18,8 @@ class StakePage extends React.Component {
         super(props);
         this.state = {
             SmartContract: null,
-            SmartContractAddr: "0xe42477108055aA6F904EC8524dCaf85f80D3a3e8", //[MainNet] // "0xe1A712878786A2993C3Ba5a3CABC62423D601F35" EasyDefi[KOVAN]
-            SmartContractABI: [{ "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "CheckTokensFromPair", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_amount", "type": "uint256" }], "name": "emergencyETHWithdrawal", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_token", "type": "address" }, { "internalType": "uint256", "name": "_amount", "type": "uint256" }], "name": "emergencyTokenWithdrawal", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_ethamount", "type": "uint256" }, { "internalType": "address", "name": "_token", "type": "address" }], "name": "GetTokenFromEth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "payable", "type": "function" }, { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "id", "type": "uint256" }, { "indexed": false, "internalType": "address", "name": "user", "type": "address" }, { "indexed": false, "internalType": "address", "name": "pair", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amt_lp_usd", "type": "uint256" }], "name": "Log", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }], "name": "OwnershipTransferred", "type": "event" }, { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_fee", "type": "uint256" }], "name": "SetFee", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }, { "internalType": "address", "name": "_target", "type": "address" }, { "internalType": "uint256", "name": "_amt", "type": "uint256" }], "name": "StakeLP", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "_pair_list", "type": "address[]" }, { "internalType": "uint256[]", "name": "_amt_list", "type": "uint256[]" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }, { "internalType": "uint256", "name": "_deadline", "type": "uint256" }], "name": "StakeLPList", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "_pair", "type": "address[]" }, { "internalType": "uint256[]", "name": "_amt", "type": "uint256[]" }], "name": "TransferLPList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }, { "internalType": "addresspayable", "name": "target", "type": "address" }, { "internalType": "uint256", "name": "amtLP", "type": "uint256" }], "name": "WithdrawLP", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "_pair", "type": "address[]" }, { "internalType": "uint256[]", "name": "_amt", "type": "uint256[]" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }, { "internalType": "uint256", "name": "_deadline", "type": "uint256" }], "name": "WithdrawLPList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "stateMutability": "payable", "type": "receive" }, { "inputs": [], "name": "DAI", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "deadline", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "fee", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "GetLPTokenBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "GetLPUSDBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }, { "internalType": "uint256", "name": "_amount", "type": "uint256" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }], "name": "GetLPWorth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "GetResidualBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "isOwner", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "address", "name": "", "type": "address" }], "name": "LPTokenBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "address", "name": "", "type": "address" }], "name": "LPUSDBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maxSlippage", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pair", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "percentage_unit", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "token0", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "token1", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "uniswap_fee", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "USD", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "USDC", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "USDT", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }],
+            SmartContractAddr: "0x48cdEfdb2b19Ca8402CB69a785D52A06D4E69E4E", //[KovanNet] 
+            SmartContractABI: [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"user","type":"address"},{"indexed":false,"internalType":"address","name":"pair","type":"address"},{"indexed":false,"internalType":"uint256","name":"amt_lp_balance","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amt_eth","type":"uint256"}],"name":"StakeEvent","type":"event"},{"inputs":[{"internalType":"address","name":"_pair","type":"address"}],"name":"CheckTokensFromPair","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"DAI","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_fee","type":"uint256"}],"name":"SetFee","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_unit","type":"uint256"}],"name":"SetPercentageUnit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_target","type":"address"}],"name":"SetStorageContract","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_fee","type":"uint256"}],"name":"SetUniswapFee","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address[]","name":"_pair_list","type":"address[]"},{"internalType":"uint256[]","name":"_amt_list","type":"uint256[]"},{"internalType":"uint256","name":"_max_slippage","type":"uint256"},{"internalType":"uint256","name":"_deadline","type":"uint256"}],"name":"StakeLPList","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"USD","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"USDT","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"deadline","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"fee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"isOwner","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"maxSlippage","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"pair","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"percentage_unit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"storage_","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"token0","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"token1","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"uniswap_fee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"stateMutability":"payable","type":"receive"}],
             uniswap_pair_abi: [{ "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "owner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "spender", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "sender", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amount0", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "amount1", "type": "uint256" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }], "name": "Burn", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "sender", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amount0", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "amount1", "type": "uint256" }], "name": "Mint", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "sender", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amount0In", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "amount1In", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "amount0Out", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "amount1Out", "type": "uint256" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }], "name": "Swap", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint112", "name": "reserve0", "type": "uint112" }, { "indexed": false, "internalType": "uint112", "name": "reserve1", "type": "uint112" }], "name": "Sync", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "Transfer", "type": "event" }, { "constant": true, "inputs": [], "name": "DOMAIN_SEPARATOR", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "MINIMUM_LIQUIDITY", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "PERMIT_TYPEHASH", "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "address", "name": "", "type": "address" }], "name": "allowance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "approve", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "balanceOf", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "address", "name": "to", "type": "address" }], "name": "burn", "outputs": [{ "internalType": "uint256", "name": "amount0", "type": "uint256" }, { "internalType": "uint256", "name": "amount1", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "decimals", "outputs": [{ "internalType": "uint8", "name": "", "type": "uint8" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "factory", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "getReserves", "outputs": [{ "internalType": "uint112", "name": "_reserve0", "type": "uint112" }, { "internalType": "uint112", "name": "_reserve1", "type": "uint112" }, { "internalType": "uint32", "name": "_blockTimestampLast", "type": "uint32" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "address", "name": "_token0", "type": "address" }, { "internalType": "address", "name": "_token1", "type": "address" }], "name": "initialize", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "kLast", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "address", "name": "to", "type": "address" }], "name": "mint", "outputs": [{ "internalType": "uint256", "name": "liquidity", "type": "uint256" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "name", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "internalType": "address", "name": "", "type": "address" }], "name": "nonces", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }, { "internalType": "address", "name": "spender", "type": "address" }, { "internalType": "uint256", "name": "value", "type": "uint256" }, { "internalType": "uint256", "name": "deadline", "type": "uint256" }, { "internalType": "uint8", "name": "v", "type": "uint8" }, { "internalType": "bytes32", "name": "r", "type": "bytes32" }, { "internalType": "bytes32", "name": "s", "type": "bytes32" }], "name": "permit", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "price0CumulativeLast", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "price1CumulativeLast", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "address", "name": "to", "type": "address" }], "name": "skim", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "uint256", "name": "amount0Out", "type": "uint256" }, { "internalType": "uint256", "name": "amount1Out", "type": "uint256" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "bytes", "name": "data", "type": "bytes" }], "name": "swap", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "symbol", "outputs": [{ "internalType": "string", "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "sync", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "token0", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "token1", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "totalSupply", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "transfer", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "internalType": "address", "name": "from", "type": "address" }, { "internalType": "address", "name": "to", "type": "address" }, { "internalType": "uint256", "name": "value", "type": "uint256" }], "name": "transferFrom", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }],
             erc20_abi: [{ "constant": true, "inputs": [], "name": "name", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_spender", "type": "address" }, { "name": "_value", "type": "uint256" }], "name": "approve", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "totalSupply", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_from", "type": "address" }, { "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" }], "name": "transferFrom", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "decimals", "outputs": [{ "name": "", "type": "uint8" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }], "name": "balanceOf", "outputs": [{ "name": "balance", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "symbol", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" }], "name": "transfer", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }, { "name": "_spender", "type": "address" }], "name": "allowance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }, { "indexed": true, "name": "spender", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }], "name": "Approval", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "from", "type": "address" }, { "indexed": true, "name": "to", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }], "name": "Transfer", "type": "event" }],
             manualTradeSize: 1, /* Stake 상태에서 Manual Trade Size 값을 지정하고 
@@ -30,10 +30,12 @@ class StakePage extends React.Component {
             t_id: 0,
             tokenData: [],
             totalTradeSize: 0, /* 각 Unipair의 Token Size 들의 값의 합 */
+            totalEstimatedTransaction: 0,
             limit: 0,
             isConfirmed: false,
             isProcessing: false,
             date: '',
+            gwei: 0,
         };
         this.topPoolData = props.topPoolData;
         this.WalletAddress = props.WalletAddress;
@@ -139,12 +141,16 @@ class StakePage extends React.Component {
     submitTrades = async (isStake) => {
         if (this.props.IsConnectedMetaMask) {
             if (this.props.IsStake) {
-                this.SetTokenData(this.state.tokenData);
+                console.log('TTTTTTTTTTTTTT', this.state.tokenData)
+                this.SetTokenData(this.state.tokenData, 
+                    this.state.totalTradeSize + ( this.state.gwei / Math.pow(10, 9)),
+                    (this.state.totalTradeSize * this.props.USD) + this.state.gasCost
+                );
                 this.Invest();
 
             } else {
                 console.log('withdraw')
-                this.Withdraw();
+                //this.Withdraw();
             }
         } else {
             alert("Connected 'MetaMask' first.");
@@ -152,62 +158,35 @@ class StakePage extends React.Component {
     };
 
     Invest = async () => {
+        // console.log(this.state.gasPrice, this.props.fastestGasPrice)
+        // return;
         let pair_list = [];
         let wei_list = [];
         let wei_amount = BigNumber(0);
-
-        let response = await fetch("https://ethgasstation.info/api/ethgasAPI.json");
-        let jsonData = await response.json();
-        let avgGasPrice = Number(jsonData['average']) / 10;
-        let fastGasPrice = Number(jsonData['fastest']) / 10;
-
-        console.log("jsonData: ", jsonData);
-        console.log("avgGasPrice: ", avgGasPrice);
-        console.log("fastGasPrice: ", fastGasPrice);
-
-        const tokenData = this.state.tokenData;
-        let wei;
-        for (let i = 0; i < tokenData.length; i++) {
-            console.log(`Token Data Index${i} Investing !`, tokenData[i].tokenSize);
-            let wei = BigNumber(tokenData[i].tokenSize * Math.pow(10, 18));
-            wei = wei.integerValue();//Math.floor( wei );
-            if (wei !== 0) {
-                pair_list.push(tokenData[i].pair_addr);
+        for (let i = 0; i < this.state.tokenData.length; i++){
+            console.log("Invest : ", i, this.state.tokenData[i].tokenSize, this.state.tokenData[i].pair_addr)
+            if(this.state.tokenData[i].tokenSize != 0){
+                let wei = BigNumber(this.state.tokenData[i].tokenSize * Math.pow(10, 18)).integerValue();
+                pair_list.push(this.state.tokenData[i].pair_addr);
                 wei_list.push(wei.toString());
                 wei_amount = wei.plus(wei_amount);
             }
+            
         }
 
-        // Gas Price
-        let gasPrice = 0;
-        if (this.props.gasSpeed === "slow") { gasPrice = Math.floor(avgGasPrice / 2); }
-        else if (this.props.gasSpeed === "medium") { gasPrice = Math.floor(avgGasPrice); }
-        else { gasPrice = Math.floor(fastGasPrice * 1.5); }
-        console.log("Gas:", avgGasPrice, fastGasPrice, gasPrice, Math.floor(avgGasPrice / 2));
-        gasPrice = BigNumber(gasPrice * Math.pow(10, 9));
+        let gasPrice = BigNumber(Number(this.state.gwei) * Math.pow(10, 9) / 532671).integerValue();
 
-        // Nonce
-        const nonce = await this.web3.eth.getTransactionCount(this.state.SmartContractAddr);
+        //const nonce = await this.web3.eth.getTransactionCount(this.state.SmartContractAddr);
+        const nonce = await this.web3.eth.getTransactionCount(this.props.WalletAddress);
+        console.log("Invest ", pair_list, wei_list, wei_amount);
 
-        //Gas Speed
-        let gasSpeed = 0;
-        if (this.props.gasSpeed === "slow") { gasSpeed = 1.0; } else if (this.props.gasSpeed === "medium") { gasSpeed = 1.2; } else { gasSpeed = 1.5; }
 
         //Gas Estimate
         let gasEstimate = 0;
-        await this.state.SmartContract.methods.StakeLPList([this.state.pair1_addr], [wei], 25, Date.now()+2000).estimateGas({from:this.props.WalletAddress,
-                                                                                                                                        value:wei
-                                                                                                                                    }).then(function(gasAmount){
-                                                                                                                                        console.log(gasAmount)
-                                                                                                                                        gasEstimate = gasAmount;
-                                                                                                                                    })
-                                                                                                                                    .catch(function(error){
-                                                                                                                                        console.log(error)
-                                                                                                                                    });;
         await this.state.SmartContract.methods.StakeLPList(pair_list, wei_list, 250, Date.now() + 2000)
             .estimateGas({
                 from: this.props.WalletAddress,
-                value: wei_amount
+                value: wei_amount.integerValue()
             })
             .then(function (gasAmount) {
                 console.log(gasAmount)
@@ -223,7 +202,7 @@ class StakePage extends React.Component {
             .send({
                 from: this.props.WalletAddress,
                 value: wei_amount, //송금할 Ether [Wei]
-                gas: Math.floor(gasEstimate * gasSpeed), //gas 량
+                gas: Math.floor(gasEstimate * 1.2), //gas 량
                 gasPrice: gasPrice.toString(),
                 nonce: nonce//재접속한 횟수
             });
@@ -234,6 +213,90 @@ class StakePage extends React.Component {
         else {
             alert("Fail Invest Transaction");
         }
+
+        return;
+        // let pair_list = [];
+        // let wei_list = [];
+        // let wei_amount = BigNumber(0);
+
+        // let response = await fetch("https://ethgasstation.info/api/ethgasAPI.json");
+        // let jsonData = await response.json();
+        // let avgGasPrice = Number(jsonData['average']) / 10;
+        // let fastGasPrice = Number(jsonData['fastest']) / 10;
+
+        // console.log("jsonData: ", jsonData);
+        // console.log("avgGasPrice: ", avgGasPrice);
+        // console.log("fastGasPrice: ", fastGasPrice);
+
+        // const tokenData = this.state.tokenData;
+        // let wei;
+        // for (let i = 0; i < tokenData.length; i++) {
+        //     console.log(`Token Data Index${i} Investing !`, tokenData[i].tokenSize);
+        //     let wei = BigNumber(tokenData[i].tokenSize * Math.pow(10, 18));
+        //     wei = wei.integerValue();//Math.floor( wei );
+        //     if (wei !== 0) {
+        //         pair_list.push(tokenData[i].pair_addr);
+        //         wei_list.push(wei.toString());
+        //         wei_amount = wei.plus(wei_amount);
+        //     }
+        // }
+
+        // // Gas Price
+        // let gasPrice = 0;
+        // if (this.props.gasSpeed === "slow") { gasPrice = Math.floor(avgGasPrice / 2); }
+        // else if (this.props.gasSpeed === "medium") { gasPrice = Math.floor(avgGasPrice); }
+        // else { gasPrice = Math.floor(fastGasPrice * 1.5); }
+        // console.log("Gas:", avgGasPrice, fastGasPrice, gasPrice, Math.floor(avgGasPrice / 2));
+        // gasPrice = BigNumber(gasPrice * Math.pow(10, 9));
+
+        // // Nonce
+        // const nonce = await this.web3.eth.getTransactionCount(this.state.SmartContractAddr);
+
+        // //Gas Speed
+        // let gasSpeed = 0;
+        // if (this.props.gasSpeed === "slow") { gasSpeed = 1.0; } else if (this.props.gasSpeed === "medium") { gasSpeed = 1.2; } else { gasSpeed = 1.5; }
+
+        // //Gas Estimate
+        // let gasEstimate = 0;
+        // await this.state.SmartContract.methods.StakeLPList([this.state.pair1_addr], [wei], 25, Date.now()+2000).estimateGas({from:this.props.WalletAddress,
+        //                                                                                                                                 value:wei
+        //                                                                                                                             }).then(function(gasAmount){
+        //                                                                                                                                 console.log(gasAmount)
+        //                                                                                                                                 gasEstimate = gasAmount;
+        //                                                                                                                             })
+        //                                                                                                                             .catch(function(error){
+        //                                                                                                                                 console.log(error)
+        //                                                                                                                             });;
+        // await this.state.SmartContract.methods.StakeLPList(pair_list, wei_list, 250, Date.now() + 2000)
+        //     .estimateGas({
+        //         from: this.props.WalletAddress,
+        //         value: wei_amount
+        //     })
+        //     .then(function (gasAmount) {
+        //         console.log(gasAmount)
+        //         gasEstimate = gasAmount;
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error)
+        //     });;
+
+        // console.log("Invest ", pair_list, wei_list, wei_amount, gasEstimate, gasPrice, nonce);
+
+        // let results = await this.state.SmartContract.methods.StakeLPList(pair_list, wei_list, 250, Date.now() + 2000)
+        //     .send({
+        //         from: this.props.WalletAddress,
+        //         value: wei_amount, //송금할 Ether [Wei]
+        //         gas: Math.floor(gasEstimate * gasSpeed), //gas 량
+        //         gasPrice: gasPrice.toString(),
+        //         nonce: nonce//재접속한 횟수
+        //     });
+
+        // if (results['status']) {
+        //     alert("Success Invest Transaction");
+        // }
+        // else {
+        //     alert("Fail Invest Transaction");
+        // }
     };
 
 
@@ -241,7 +304,9 @@ class StakePage extends React.Component {
     gas 가격 기준을 불러와서 이 함수에 적용 */
     SetGasSpeed = async (value) => {
         this.setState({
-            gasCost: (value / 100 * this.props.fastestGasPrice).toFixed(4)
+            gwei: (value / 100 * this.props.fastestGasPrice * 532671),
+            gasCost: (value / 100 * this.props.fastestGasPrice  * 532671 * this.props.USD/ Math.pow(10, 9)),
+            totalEstimatedTransaction: this.state.gasCost
         });
     }
 
@@ -252,8 +317,8 @@ class StakePage extends React.Component {
         for (let i = 0; i < this.state.tokenData.length; i++) {
             total += this.state.tokenData[i]['tokenSize']
         }
-        this.setState({ totalTradeSize: total.toFixed(6) });
-        this.setState({ totalTradeSize: total.toFixed(6) });
+        this.setState({ totalTradeSize: total});
+        this.setState({ totalTradeSize: total});
         if (this.state.tokenData.length === 0) {
             document.getElementById("add_pool_display").style.display = "none";
         }
@@ -264,16 +329,21 @@ class StakePage extends React.Component {
         for (let i = 0; i < this.state.tokenData.length; i++) {
             total += this.state.tokenData[i]['tokenSize']
         }
-        if (total > this.props.EtherBalance){
-            this.setState({ totalTradeSize: this.props.EtherBalance });
+        if (total + this.state.gwei > (this.props.EtherBalance)){
+            // 에러 처리 
+            this.setState({ totalTradeSize: total });
         } else {
-            this.setState({ totalTradeSize: total.toFixed(6) });
+            this.setState({ totalTradeSize: total });
         }
     }
 
     handleConfirmMessageBox() {
-        this.setState({ isConfirmed: !this.state.isConfirmed });
-        this.isConfirmRef.current.focus();
+        if ( this.props.EtherBalance * this.props.USD < (this.state.totalTradeSize * this.props.USD) + this.state.gasCost) {
+            alert("You can't exceed the amount of avaiable balance in USD to stake your total ETH size. Please make sure to set the less total estimated transaction amount than the current balance in USD.")
+        } else {
+            this.setState({ isConfirmed: !this.state.isConfirmed });
+            this.isConfirmRef.current.focus();
+        }
     }
 
     handleProcessingMessageBox() {
@@ -310,7 +380,7 @@ class StakePage extends React.Component {
                 return (<AddPool token={token} totalTradeSize={this.state.totalTradeSize} EtherBalance={this.props.EtherBalance} updateTradeTotalSize={this.updateTradeTotalSize} key={i} />);
             })
         }
-
+        //const gwei = (this.state.gasCost);
 
         return (
             <React.Fragment>
@@ -328,7 +398,7 @@ class StakePage extends React.Component {
                                     <div className="ethereum_usd">
                                         <span style={{ fontSize: '32px' }}>{this.props.EtherBalance}</span>
                                         <span className="eth"> ETH</span>
-                                        <span style={{ color: '#fafafa', fontSize: '28px', fontWeight: 'lighter', display: 'inline', position: 'absolute', top: 67, left: 365 }}>$ {this.props.UsdBalance}</span>
+                                        <span style={{ color: '#fafafa', fontSize: '28px', fontWeight: 'lighter', display: 'inline', position: 'absolute', top: 67, left: 365 }}>$ {(this.props.EtherBalance * this.props.USD).toFixed(3)}</span>
                                     </div>
                                     <div className="size" id="add_pool_display" style={{ display: 'none' }}>
                                         <span>Size</span>
@@ -362,22 +432,26 @@ class StakePage extends React.Component {
                                         Investment Amount
                                     </div>
                                     <div className="invest_usd">
-                                        <span style={{ color: '#fafafa', fontSize: '28px' }}>{this.state.totalTradeSize}</span>
-                                        <span style={{ color: '#fafafa', fontSize: '28px', fontWeight: 'lighter', display: 'inline', position: 'absolute', left: 620 }}>$ 97,500</span>
+                                        <span style={{ color: '#fafafa', fontSize: '28px' }}>{Number(this.state.totalTradeSize).toFixed(9)}</span>
+                                        <span style={{ color: '#fafafa', fontSize: '28px', fontWeight: 'lighter', display: 'inline', position: 'absolute', left: 751 }}>$ {(this.state.totalTradeSize * this.props.USD).toFixed(3)}</span>
                                     </div>
                                     <div style={{ color: '#51A0BF', paddingTop: '8px' }}>
                                         Estimated gas cost
                                     </div>
                                     <div className="gascost_usd">
-                                        <span style={{ color: '#fafafa', fontSize: '28px' }}>{this.state.gasCost}</span>
-                                        <span style={{ color: '#fafafa', fontSize: '28px', fontWeight: 'lighter', display: 'inline', position: 'absolute', left: 620 }}>$ {this.state.gasCost}</span>
+                                        <span style={{ color: '#fafafa', fontSize: '28px' }}>
+                                            {Number(this.state.gwei).toFixed(0)}
+                                            <span style={{fontSize:"18px"}}> gwei</span>
+                                        </span>
+                                        <span style={{ color: '#fafafa', fontSize: '28px', fontWeight: 'lighter', display: 'inline', position: 'absolute', left: 751 }}>
+                                            $ {this.state.gasCost.toFixed(3)}</span>
                                     </div>
                                     <div style={{ color: '#51A0BF', paddingTop: '8px' }}>
                                         Total Estimated Transaction Amount
                                     </div>
                                     <div className="transc_usd">
-                                        <span style={{ color: '#fafafa', fontSize: '28px' }}>100.001</span>
-                                        <span style={{ color: '#fafafa', fontSize: '28px', fontWeight: 'lighter', display: 'inline', position: 'absolute', left: 620 }}>$ 292,501</span>
+                                        <span style={{ color: '#fafafa', fontSize: '28px' }}>{Number(this.state.totalTradeSize + this.state.gwei / Math.pow(10, 9)).toFixed(6)}</span>
+                                        <span style={{ color: '#fafafa', fontSize: '28px', fontWeight: 'lighter', display: 'inline', position: 'absolute', left: 751 }}>$ {((this.state.totalTradeSize + this.state.gwei/Math.pow(10, 9)) * this.props.USD).toFixed(3)}</span>
                                     </div>
 
                                     <div id="detail_select_area2" style={{ display: 'flex' }}>
@@ -404,14 +478,14 @@ class StakePage extends React.Component {
                                 </span>
                                 <GasSlider SetGasSpeed={this.SetGasSpeed} />
                                 <div>
-                                    $ {this.state.gasCost} / $ {this.props.fastestGasPrice}
+                                    $ {this.state.gasCost.toFixed(3)} / $ {(this.props.fastestGasPrice  * 532671 * this.props.USD/ Math.pow(10, 9)).toFixed(3)}
                                 </div>
                             </section>
                         </Row>
 
                         <Row>
                             <section className={`stake_confirm_message ${this.state.isConfirmed ? "active" : "inactive"}`} ref={this.isConfirmRef}>
-                                <div className="inner_message">
+                                < div className="inner_message">
                                     You are staking <p>{this.state.totalTradeSize} ETH</p> in <img src="images/eth_dollar.png" width="55px"></img>
                                     <p> ETH - USDT</p>
                                     <br /><br />
@@ -419,7 +493,10 @@ class StakePage extends React.Component {
                                     <br /><br />
                                     The estimated transaction amount including
                                     <br /><br />
-                                    gas cost is: <p>{this.state.gasCost}</p> or <p>$ {this.props.fastestGasPrice} </p>
+                                    gas cost is: <p>{(this.state.gasCost * Math.pow(10, 9) / this.props.USD).toFixed(1)}
+                                            <span style={{fontSize:"18px"}}> gwei</span>
+                                            </p> or 
+                                            <p> $ {this.state.gasCost} </p>
                                 </div>
                                 <div className="stake_confirm_buttons">
                                     <button className="flex-item" onClick={this.handleConfirmMessageBox}>Cancel</button>
