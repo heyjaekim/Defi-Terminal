@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col } from "reactstrap";
 
 class ConnectMask extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             topPoolData: this.props.topPoolData
@@ -62,10 +62,10 @@ class ConnectMask extends React.Component {
                     <Col lg="6" style={{ display: "inline-block", paddingTop: "2px", paddingLeft: "340px" }}>
                         <p style={{ color: "#fafafa", fontSize: "24px" }}> Ease of use and best-in-class, seamless user experience.</p>
                         <div className="stake_page_img">
-                            <img src="images/portfolio_page.png" alt="stake_page" height="220px"></img>
+                            <img src="images/portfolio_page.png" alt="stake_page" height="220px" />
                         </div>
                         <div className="portfolio_page_img">
-                            <img src="images/stake_page.png" alt="stake_page" height="220px"></img>
+                            <img src="images/stake_page.png" alt="stake_page" height="220px" />
                         </div>
                     </Col>
                 </Row>

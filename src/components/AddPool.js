@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import PercentSlider from "./PercentSlider.js";
 import Web3 from "web3";
 
@@ -128,8 +127,8 @@ class AddPool extends Component {
             <React.Fragment>
                 <Row>
                     <div className="display_default_pair" id={this.props.token.default_t_id}>
-                        <button className="eth_icon"><img src="./images/eth_icon.png" alt=""></img></button>
-                        <button className="dollar_icon"><img src="./images/dollar_icon.png" alt=""></img></button>
+                        <button className="eth_icon"><img src="images/eth_icon.png" alt=""></img></button>
+                        <button className="dollar_icon"><img src="images/dollar_icon.png" alt=""></img></button>
                         <div className="eth_usdt_pair">
                             <h5> {this.props.token.pairLeft} - {this.props.token.pairRight} </h5>
                         </div>

@@ -1,5 +1,5 @@
 # Defi-PoolHopper
-
+ 
 ## 설치 방법 및 환경 설정
     - Branch Address: https://gitlab.com/heyjaekim/defi-poolhopper.git
     - Please do "git clone https://gitlab.com/heyjaekim/defi-poolhopper.git"
@@ -20,7 +20,23 @@
 - 스마트 컨트랙트 연결 시 요구되는 패키지.
 ### `yarn add bignumber.js`
 - web3 ether 처럼 큰 수 핸드링을 통한 Ethereum 또는 Gas Cost 계산에 필요.
+### `yarn add tabletop`
+- interaction with Google sheet
 
+## AWS CLI 환경설정 
+https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html
+### CLI 환경 설정
+    aws configure --profile=poolhopper-admin
+    AWS Access Key ID [None]: AKIAZMEATULGUC3CZPUA
+    AWS Secret Access Key [None]: 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
+    Default region name [None]: ap-northeast-2
+    Default output format [None]: json
+
+## Google sheet (Top Pool Data) 주소 및 어카운트 정보
+    https://spreadsheets.google.com/feeds/list/1NmoQ1x7SvX0wxlhmuXsvdu_cWGpROnTBzqus46v4Oog/od6/public/basic?alt=json
+
+    Account info: defi.poolhopper@gmail.com
+    Account pwd: Jointherepublic!
 
 ## 프로젝트 파일 구조
 

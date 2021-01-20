@@ -20,34 +20,35 @@ class TokenAddr extends React.Component {
     }
     
     componentDidMount = async() => {
-        var balance = BigNumber(await this.props.SmartContract.methods.GetLPBalance(this.props.token.pair_addr).call({ from: this.props.WalletAddress }));
-        balance = balance.multipliedBy(this.props.token.tokenSize).integerValue();
+        var balance = BigNumber(await this.props.SmartContract.methods.GetLPBalance(this.props.token.pair_addr).call({ from: this.props.WalletAddress })).dividedBy(Math.pow(10, 18));;
+        console.log("EEEEEEEEEEEEEE", balance.toString(), this.props.token.tokenSize)
+        //balance = balance.multipliedBy(this.props.token.tokenSize).integerValue();
         this.setState({balance: balance});
     }
 
     /* 각 Address에서 Unstake하기 위해 LP Token Amount를 보여주기 위한 함수*/ 
     SetTokenAmount = async (percentage, value) => {
         var balance = BigNumber(await this.props.SmartContract.methods.GetLPBalance(this.props.token.pair_addr).call({ from: this.props.WalletAddress })).dividedBy(Math.pow(10, 18));
-        console.log("TTT", percentage, value)
+        console.log("TTT", percentage, value,balance.toString())
         if (value !== 0) {
             this.setState({
                 //token: (parseFloat(value) / 100) * parseFloat(this.props.token.tokenSize)
                 token: balance.multipliedBy(parseFloat(value) / 100),
-                balance:balance
+                //balance:balance
             });
             //balance = balance.multipliedBy(this.state.token).integerValue();
             this.props.token.percentToken = value;
-            this.props.token.lpAmtEth = (this.state.token).toFixed(5);
-            this.props.token.lpAmtUsd = (this.state.token.multipliedBy(234)).toFixed(5);
+            this.props.token.lpAmtEth = (this.state.token).toFixed(15);
+            this.props.token.lpAmtUsd = (this.state.token.multipliedBy(this.props.USD)).toFixed(15);
         } else {
             this.setState({
                 token: balance.multipliedBy(parseFloat(percentage) / 100),
-                balance:balance
+                //balance:balance
             });
             //balance = balance.multipliedBy(this.state.token).integerValue();
             this.props.token.percentToken = percentage;
-            this.props.token.lpAmtEth = (this.state.token).toFixed(5);
-            this.props.token.lpAmtUsd = (this.state.token.multipliedBy(234)).toFixed(5);
+            this.props.token.lpAmtEth = (this.state.token).toFixed(15);
+            this.props.token.lpAmtUsd = (this.state.token.multipliedBy(this.props.USD)).toFixed(15);
         }
     }
 
@@ -69,7 +70,7 @@ class TokenAddr extends React.Component {
                             </CopyToClipboard>
                         </div>
                         <div className="eth-percentslider">
-                            <span>{this.state.balance.toFixed(5)} (LP) </span>
+                            <span>{this.state.balance.toFixed(15)} (LP) </span>
                             <PercentSlider SetTokenAmount={this.SetTokenAmount} />
                         </div>
                         <div className="eth-lp_amount">

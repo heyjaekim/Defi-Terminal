@@ -1,9 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
-// import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,16 +43,11 @@ const PrettoSlider = withStyles({
 
 export default function GasSlider(props) {
   const classes = useStyles();
-  // const [value, setValue] = 20;
-  // const { children, open, value } = props;
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   props.gasSpeed = Number(e.target.value)
-  // }
+
   return (
     <div className={classes.root}>
       
-      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={0}  onChange={(e, value)=> props.SetGasSpeed(value)} onChangeCommitted={(e, value)=> props.SetGasSpeed(value)} />
+      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={0} onChange={(e, value)=> props.SetGasSpeed(value)} onChangeCommitted={(e, value)=> props.SetGasSpeed(value)} />
       
     </div>
   );

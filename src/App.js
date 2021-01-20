@@ -8,6 +8,7 @@ import Web3 from "web3";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './components/css/Navbar.css';
 import './components/css/InitialPage.css'
+import Tabletop from 'tabletop';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,11 +17,13 @@ class App extends React.Component {
     this.state = {
       loggedIn: false,
       SmartContract: null,
-      SmartContractAddr: "0x65C025412411DB5E6ff1F8F51D767078FB07f451", //[MainNet] // "0xe1A712878786A2993C3Ba5a3CABC62423D601F35" EasyDefi[KOVAN]
-      SmartContractABI: [{ "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "id", "type": "uint256" }, { "indexed": false, "internalType": "address", "name": "user", "type": "address" }, { "indexed": false, "internalType": "address", "name": "pair", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amt_lp_usd", "type": "uint256" }], "name": "Log", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }], "name": "OwnershipTransferred", "type": "event" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "CheckTokensFromPair", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "DAI", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "GetLPTokenBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "GetLPUSDBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }, { "internalType": "uint256", "name": "_amount", "type": "uint256" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }], "name": "GetLPWorth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "GetResidualBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_ethamount", "type": "uint256" }, { "internalType": "address", "name": "_token", "type": "address" }], "name": "GetTokenFromEth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "address", "name": "", "type": "address" }], "name": "LPTokenBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "", "type": "address" }, { "internalType": "address", "name": "", "type": "address" }], "name": "LPUSDBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_fee", "type": "uint256" }], "name": "SetFee", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }, { "internalType": "address", "name": "_target", "type": "address" }, { "internalType": "uint256", "name": "_amt", "type": "uint256" }], "name": "StakeLP", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "_pair_list", "type": "address[]" }, { "internalType": "uint256[]", "name": "_amt_list", "type": "uint256[]" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }, { "internalType": "uint256", "name": "_deadline", "type": "uint256" }], "name": "StakeLPList", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "_pair", "type": "address[]" }, { "internalType": "uint256[]", "name": "_amt", "type": "uint256[]" }], "name": "TransferLPList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "USD", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "USDC", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "USDT", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }, { "internalType": "addresspayable", "name": "target", "type": "address" }, { "internalType": "uint256", "name": "amtLP", "type": "uint256" }], "name": "WithdrawLP", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "_pair", "type": "address[]" }, { "internalType": "uint256[]", "name": "_amt", "type": "uint256[]" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }, { "internalType": "uint256", "name": "_deadline", "type": "uint256" }], "name": "WithdrawLPList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "deadline", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_amount", "type": "uint256" }], "name": "emergencyETHWithdrawal", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_token", "type": "address" }, { "internalType": "uint256", "name": "_amount", "type": "uint256" }], "name": "emergencyTokenWithdrawal", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "fee", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "isOwner", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maxSlippage", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pair", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "percentage_unit", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "token0", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "token1", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "uniswap_fee", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "stateMutability": "payable", "type": "receive" }],
+      // SmartContractAddr: "0x65C025412411DB5E6ff1F8F51D767078FB07f451", //[MainNet] // "0xe1A712878786A2993C3Ba5a3CABC62423D601F35" EasyDefi[KOVAN]
+      SmartContractAddr: "0xa00dFEDC803C13cfcA8c68d68194a3841165B198",//[MainNet]
+      SmartContractABI: [{ "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }], "name": "OwnershipTransferred", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "address", "name": "user", "type": "address" }, { "indexed": false, "internalType": "address", "name": "pair", "type": "address" }, { "indexed": false, "internalType": "uint256", "name": "amt_lp_balance", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "amt_eth", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "lp_usd_unit", "type": "uint256" }], "name": "WithdrawEvent", "type": "event" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "CheckTokensFromPair", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "DAI", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }], "name": "GetCurLP2USD", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_token", "type": "address" }], "name": "GetLPBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_pair", "type": "address" }, { "internalType": "uint256", "name": "_amount", "type": "uint256" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }], "name": "GetLPWorth", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }, { "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_fee", "type": "uint256" }], "name": "SetFee", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_unit", "type": "uint256" }], "name": "SetPercentageUnit", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "_target", "type": "address" }], "name": "SetStorageContract", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "_fee", "type": "uint256" }], "name": "SetUniswapFee", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "USD", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "USDC", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "USDT", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address[]", "name": "_pair", "type": "address[]" }, { "internalType": "uint256[]", "name": "_amt", "type": "uint256[]" }, { "internalType": "uint256", "name": "_max_slippage", "type": "uint256" }, { "internalType": "uint256", "name": "_deadline", "type": "uint256" }], "name": "WithdrawLPList", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "deadline", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "fee", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "isOwner", "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "maxSlippage", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "pair", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "percentage_unit", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "storage_", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "token0", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "token1", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "uniswap_fee", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "stateMutability": "payable", "type": "receive" }],
       EtherBalance: 0,
       USDBalance: 0,
       fastestGasPrice: 0,
+      averageGasPrice: 0,
       ethToUsd: 0,
       TotalInvestment: 0,
       TotalInvestmentUSD: 0,
@@ -36,24 +39,24 @@ class App extends React.Component {
           pair_addr: '0xB10cf58E08b94480fCb81d341A63295eBb2062C2',
           pair_token0_name: 'ETH',
           pair_token1_name: 'USDT',
-          pair_token0_img: './images/eth_icon.png',
-          pair_token1_img: './images/dollar_icon.png',
+          pair_token0_img: 'images/eth_icon.png',
+          pair_token1_img: 'images/dollar_icon.png',
         },
         {
           p_id: 1,
           pair_addr: '0xd4d9A707C2943f59525a9de00D2967A99f8B5f0a',
-          pair_token0_name: 'USDT',
-          pair_token1_name: 'ETH',
-          pair_token0_img: './images/dollar_icon.png',
+          pair_token0_name: 'ETH',
+          pair_token1_name: 'USDT',
+          pair_token0_img: 'images/dollar_icon.png',
           pair_token1_img: './images/eth_icon.png',
         },
         {
           p_id: 1,
           pair_addr: '0xd4d9A707C2943f59525a9de00D2967A99f8B5f0a',
-          pair_token0_name: 'USDT',
-          pair_token1_name: 'ETH',
-          pair_token0_img: './images/dollar_icon.png',
-          pair_token1_img: './images/eth_icon.png',
+          pair_token0_name: 'ETH',
+          pair_token1_name: 'USDT',
+          pair_token0_img: 'images/dollar_icon.png',
+          pair_token1_img: 'images/eth_icon.png',
         }
       ],
       // 테스트용 token data
@@ -73,8 +76,8 @@ class App extends React.Component {
           pair_token1: null,
           pair_token0_name: 'USDT',
           pair_token1_name: 'ETH',
-          pair_token0_img: './images/dollar_icon.png',
-          pair_token1_img: './images/eth_icon.png',
+          pair_token0_img: 'images/dollar_icon.png',
+          pair_token1_img: 'images/eth_icon.png',
           // token price 및 profit 측정하는데 필요한 요소들
           tokenName: 'token_0',
           tokenSize: 1.12345678,
@@ -102,8 +105,8 @@ class App extends React.Component {
           pair_token1: null,
           pair_token0_name: 'USDT',
           pair_token1_name: 'ETH',
-          pair_token0_img: './images/dollar_icon.png',
-          pair_token1_img: './images/eth_icon.png',
+          pair_token0_img: 'images/dollar_icon.png',
+          pair_token1_img: 'images/eth_icon.png',
           // token price 및 profit 측정하는데 필요한 요소들
           tokenName: 'token_0',
           tokenSize: 1.12345678,
@@ -131,8 +134,8 @@ class App extends React.Component {
           pair_token1: null,
           pair_token0_name: 'ETH',
           pair_token1_name: 'USDT',
-          pair_token0_img: './images/eth_icon.png',
-          pair_token1_img: './images/dollar_icon.png',
+          pair_token0_img: 'images/eth_icon.png',
+          pair_token1_img: 'images/dollar_icon.png',
           // token price 및 profit 측정하는데 필요한 요소들
           tokenName: 'token_1',
           tokenSize: 2.22345678,
@@ -152,10 +155,18 @@ class App extends React.Component {
   };
 
   /* 첫 페이지 시작 시 자동으로 기본 정보 업데이트 실행 */
-  async componentDidMount() {
-
-    // await this.UpdateInfo();
-    // await this.handleConnectYourWallet();
+  componentDidMount() {
+    // let url = 'https://spreadsheets.google.com/feeds/list/1NmoQ1x7SvX0wxlhmuXsvdu_cWGpROnTBzqus46v4Oog/od6/public/basic?alt=json'
+    Tabletop.init({
+      key: '1NmoQ1x7SvX0wxlhmuXsvdu_cWGpROnTBzqus46v4Oog',
+      callback: googleData => {
+        console.log('google sheet data --->', googleData)
+        this.setState({
+          topPoolData: googleData
+        })
+      },
+      simpleSheet: true
+    })
   }
 
   /* ConnectedPage.js에서 User가 update state할 때마다 UpdateInfo 비동기 함수 실행 */
@@ -175,6 +186,7 @@ class App extends React.Component {
       console.log("ETH USD: ", usd);
       let response = await fetch("https://ethgasstation.info/api/ethgasAPI.json");
       let jsonData = await response.json();
+      let averageGasPrice = Number(jsonData['average']) / 10;
       let fastestGasPrice = Number(jsonData['fastest']) / 10;
       //fastestGasPrice = fastestGasPrice * Number(usd) / Math.pow(10, 9);
       console.log("fastestGasPrice: ", fastestGasPrice);
@@ -185,6 +197,7 @@ class App extends React.Component {
         USDBalance: parseFloat(etherBalance * Number(usd)).toFixed(2),
         WalletAddress: accounts[0],
         fastestGasPrice: fastestGasPrice.toFixed(8),
+        averageGasPrice: averageGasPrice.toFixed(8),
         USD: Number(usd)
       })
 
@@ -259,20 +272,7 @@ class App extends React.Component {
       // console.log('Token Data: ' + this.state.tokenData[0]['tokenSize'])
       // console.log('Token Data: ' + this.state.tokenData[1]['pair_addr'])
     });
-    /* Update Info 파트에서  */
   }
-
-  /* Connect Your Wallet 누르면 initial page를 가리고 stake page가 나오도록 */
-  // handleConnectYourWallet = async () => {
-  //   if (this.state.loggedIn) {
-  //     this.setState({ loggedIn: true });
-  //     document.getElementById("initial_bef").style.display = "none";
-  //     document.getElementById("initial_aft").style.display = "block";
-  //   } else {
-  //     document.getElementById("initial_bef").style.display = "block";
-  //     document.getElementById("initial_aft").style.display = "none";
-  //   }
-  // }
 
   render() {
     console.log("from StakePage.js update tokenData: ", this.state.tokenData);
@@ -291,11 +291,11 @@ class App extends React.Component {
                     SetTokenData={this.SetTokenData}
                     ConnectWallet={this.ConnectWallet}
                     WalletAddress={this.state.WalletAddress}
-                    UsdBalance={this.state.USDBalance}
                     IsConnectedMetaMask={this.state.IsConnectedMetaMask}
                     IsStake={this.state.Stake}
                     topPoolData={this.state.topPoolData}
                     fastestGasPrice={this.state.fastestGasPrice}
+                    averageGasPrice={this.state.averageGasPrice}
                     USD={this.state.USD}
                   />
                 )}
@@ -316,6 +316,7 @@ class App extends React.Component {
                     IsStake={this.state.Stake}
                     topPoolData={this.state.topPoolData}
                     fastestGasPrice={this.state.fastestGasPrice}
+                    averageGasPrice={this.state.averageGasPrice}
                     USD={this.state.USD}
                   />
                 )}

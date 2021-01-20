@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 
 import * as FaIcons from 'react-icons/fa';
-import { IoWalletSharp, IoWalletOutline } from 'react-icons/io5';
+import { IoWalletOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import './css/Navbar.css';
 import { IconContext } from "react-icons/lib";
