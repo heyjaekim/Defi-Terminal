@@ -14,6 +14,12 @@
   font-weight: bold;
 }
 
+.stakehome .trading_option {
+  position: absolute;
+  top: 150px;
+  left: 0px;
+}
+
 .balance_eth {
   background-color: #155b84;
   /* text-align: center; */
@@ -24,6 +30,14 @@
   border-radius: 20px;
   margin-left: 47px;
   margin-top: 33px;
+}
+
+.stakehome .welcome_message {
+  position: relative;
+  top: 100px;
+  /* left: 20px; */
+  font-size: 24px;
+  color: var(--white-text);
 }
 
 .stakehome .stake_instruct {
@@ -61,7 +75,7 @@
   padding-left: 12px;
 }
 .display_address_pair {
-  display: block;
+  display: hidden;
 }
 
 .eth_usdt_row button {
@@ -134,7 +148,8 @@
 }
 
 .percent_slider {
-  padding-left: 68px;
+  /* position:relative; */
+  padding-left: 990px;
 }
 
 .stakehome .adding_box {
@@ -194,7 +209,7 @@
 
 .gas_speed {
   /* display: inline-block; */
-  z-index:1;
+  z-index: 1;
   position: relative;
   float: right;
   margin-top: 2vh;
@@ -248,6 +263,7 @@
 
 .stakehome .address {
   display: inline-block;
+  position: absolute;
   margin-left: 160px;
 }
 
@@ -310,6 +326,7 @@
   font-weight: bold;
   font-size: 16px;
   padding-top: 8px;
+  width: 80px;
 }
 
 .stake_button:hover {
@@ -324,7 +341,7 @@
   outline: none;
 }
 
-.recommend_page{
+.recommend_page {
   background-color: var(--box-color);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
@@ -341,8 +358,9 @@
   max-width: 1600px;
 }
 
-.top_performing_pair{
+.recommend_page .top_performing_pair {
   padding-left: 12px;
+  padding-bottom: 55px;
 }
 
 .top_performing_pair .eth_icon {
@@ -376,7 +394,7 @@
 }
 .top_performing_pair .dollar_icon img {
   border-radius: 100%;
-  background-color: var(--white-text);;
+  background-color: var(--white-text);
   width: 29px;
 }
 
@@ -390,7 +408,8 @@
 }
 
 .recommend_below .top_address {
-  /* display: inline-block; */
+  display: inline-block;
+  position: absolute;
   padding-bottom: 22px;
   padding-left: 240px;
 }
@@ -408,27 +427,37 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.recommend_below .clip_to_copy{
+.portfolio .eth-unstake_address {
+  display: inline-block;
   position: absolute;
-  left: 780px;
-  top: 120px;
-  /* top: 8px; */
-  background-color: #4983a3;
-  color: var(--white-text);;
-  border-radius: 20px;
-  outline: none;
-  border: none;
 }
-.recommend_below .clip_to_copy{
+
+.portfolio .eth-unstake_address .address {
+  display: inline-block;
+  width: 550px;
+  height: 40px;
+  margin-left: 268px;
+  margin-top: 3px;
+  padding-left: 20px;
+  font-size: 18px;
+  color: var(--white-text);
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background-color: #63afca;
+}
+
+.recommend_below .clip_to_copy {
   position: absolute;
   left: 780px;
-  top: 123px;
+  top: 10px;
   /* top: 8px; */
   background-color: #4983a3;
-  color: var(--white-text);;
+  color: var(--white-text);
   border-radius: 20px;
   outline: none;
   border: none;
+  z-index: 1;
 }
 .recommend_below .clip_to_copy:active {
   transform: translateY(2px);
@@ -439,48 +468,8 @@
   cursor: pointer;
   box-shadow: none;
 }
-.recommend_below .clip_to_copy2{
-  position: absolute;
-  left: 780px;
-  top: 184px;
-  /* top: 8px; */
-  background-color: #4983a3;
-  color: var(--white-text);;
-  border-radius: 20px;
-  outline: none;
-  border: none;
-}
-.recommend_below .clip_to_copy2:active {
-  transform: translateY(2px);
-}
-.recommend_below .clip_to_copy2:focus {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  box-shadow: none;
-}
-.recommend_below .clip_to_copy3{
-  position: absolute;
-  left: 780px;
-  top: 247px;
-  /* top: 8px; */
-  background-color: #4983a3;
-  color: var(--white-text);;
-  border-radius: 20px;
-  outline: none;
-  border: none;
-}
-.recommend_below .clip_to_copy3:active {
-  transform: translateY(2px);
-}
-.recommend_below .clip_to_copy3:focus {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  box-shadow: none;
-}
 
-.stakehome .stake_confirm_message{
+.stakehome .stake_confirm_message {
   /* align-items: center; */
   /* vertical-align: middle; */
   background-color: var(--box-color);
@@ -499,13 +488,13 @@
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   z-index: 1;
 }
-.stakehome .stake_confirm_message.active{
+.stakehome .stake_confirm_message.active {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-.stakehome .stake_confirm_message .inner_message{
+.stakehome .stake_confirm_message .inner_message {
   text-align: center;
   font-size: 22px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -514,12 +503,12 @@
   padding: 60px 20px;
 }
 
-.stakehome .stake_confirm_message .inner_message > p{
+.stakehome .stake_confirm_message .inner_message > p {
   display: inline;
   font-weight: bold;
 }
 
-.stakehome .stake_confirm_buttons{
+.stakehome .stake_confirm_buttons {
   display: flex;
   justify-content: center;
 }
@@ -527,7 +516,7 @@
 .stakehome .flex-item + .flex-item {
   margin-left: 10px;
 }
-.stakehome .stake_confirm_buttons button{
+.stakehome .stake_confirm_buttons button {
   cursor: pointer;
   border: none;
   font-weight: bold;
@@ -542,17 +531,17 @@
   display: inline-block;
   background-color: var(--background-color);
 }
-.stakehome .stake_confirm_buttons button:focus{
+.stakehome .stake_confirm_buttons button:focus {
   border: none;
   outline: none;
 }
-.stakehome .stake_confirm_buttons button:hover{
+.stakehome .stake_confirm_buttons button:hover {
   border: none;
   outline: none;
   color: var(--button-fcolor);
   background-color: #fafafa;
 }
-.stakehome .stake_processing_message{
+.stakehome .stake_processing_message {
   /* align-items: center; */
   /* vertical-align: middle; */
   background-color: var(--box-color);
@@ -571,13 +560,13 @@
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   z-index: 1;
 }
-.stakehome .stake_processing_message.active{
+.stakehome .stake_processing_message.active {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-.stakehome .stake_processing_message .inner_message{
+.stakehome .stake_processing_message .inner_message {
   text-align: center;
   font-size: 22px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -586,17 +575,17 @@
   padding: 60px 20px;
 }
 
-.stakehome .stake_processing_message .inner_message > p{
+.stakehome .stake_processing_message .inner_message > p {
   display: inline;
   font-weight: bold;
 }
 
-.stakehome .stake_processing_button{
+.stakehome .stake_processing_button {
   display: flex;
   justify-content: center;
 }
 
-.stakehome .stake_processing_button button{
+.stakehome .stake_processing_button button {
   cursor: pointer;
   border: none;
   font-weight: bold;
@@ -611,11 +600,11 @@
   display: inline-block;
   background-color: var(--background-color);
 }
-.stakehome .stake_processing_button button:focus{
+.stakehome .stake_processing_button button:focus {
   border: none;
   outline: none;
 }
-.stakehome .stake_processing_button button:hover{
+.stakehome .stake_processing_button button:hover {
   border: none;
   outline: none;
   color: var(--button-fcolor);
@@ -632,4 +621,235 @@
 
 .transc_usd {
   width: 600px;
+}
+
+.swap_select {
+  display: inline-block;
+  position: absolute;
+  margin-left: 60px;
+  width: 200px;
+  height: 30px;
+}
+
+#dropdown-performer {
+  z-index: 2;
+  width: 150px;
+  height: 45px;
+  /* margin: 0 41px 0 0; */
+  /* text-align: right; */
+  margin-top: -3.5px;
+  /* padding: 12px 19px 10px 15px; */
+  border-radius: 3px;
+  border: solid 1px white;
+  color: white;
+  background-color: var(--background-color);
+}
+#dropdown-performer-item0 {
+  width: 160px;
+  height: 45px;
+  text-align: center;
+  margin-top: -8px;
+  /* margin-bottom: -8px; */
+  padding: 12px 19px 10px 15px;
+  border-radius: 3px;
+  border-top: solid 1px white;
+  border-left: solid 1px white;
+  border-right: solid 1px white;
+  color: white;
+  background-color: #252525;
+}
+#dropdown-performer-item1 {
+  width: 160px;
+  height: 45px;
+  text-align: center;
+  /* margin-top: -8px; */
+  margin-bottom: -7px;
+  padding: 12px 19px 10px 15px;
+  border-radius: 3px;
+  border-left: solid 1px white;
+  border-right: solid 1px white;
+  color: white;
+  background-color: #252525;
+}
+
+.staking-btn {
+  border-radius: 20px;
+  width: 144px;
+  height: 40px;
+  margin-right: 10px;
+  border: solid 1px white;
+  background-color: var(--background-color);
+  color: white;
+  cursor: pointer;
+}
+
+.staking-btn:hover {
+  background-color: var(--button-fcolor);
+}
+.staking-btn:focus {
+  background-color: var(--button-fcolor);
+  outline: none;
+}
+.swapping-btn {
+  border-radius: 20px;
+  width: 144px;
+  height: 40px;
+  margin-right: 10px;
+  border: solid 1px white;
+  background-color: var(--background-color);
+  color: white;
+  cursor: pointer;
+}
+
+.swapping-btn:hover {
+  background-color: var(--button-fcolor);
+}
+.swapping-btn:focus{
+  background-color: var(--button-fcolor);
+  outline: none;
+}
+.lending-btn {
+  border-radius: 20px;
+  width: 144px;
+  height: 40px;
+  margin-right: 10px;
+  border: solid 1px white;
+  background-color: var(--background-color);
+  color: white;
+  cursor: pointer;
+}
+
+.lending-btn:hover {
+  background-color: var(--button-fcolor);
+}
+.lending-btn:focus {
+  background-color: var(--button-fcolor);
+  outline: none;
+}
+
+#staking_page {
+  display:none;
+}
+#swapping_page {
+  display: display;
+}
+#lending_page {
+  display: none;
+}
+
+.stakehome .from_block {
+  width: 500px;
+  height: 100px;
+  padding: 5px 0 0 14px;
+  border: solid 1px white;
+  border-radius: 20px;
+}
+
+.stakehome .arrow-down {
+  width: 500px;
+  margin: 15px 0 15px 0;
+  text-align: center;
+}
+.stakehome .to_block {
+  width: 500px;
+  height: 100px;
+  padding: 5px 0 0 14px;
+  border: solid 1px white;
+  border-radius: 20px;
+}
+
+.stakehome .from_input{
+  background: #51A0BF;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  width: 300px;
+}
+.stakehome .to_input{
+  background: #51A0BF;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  width: 300px;
+}
+.stakehome .select_coin{
+  margin-left: 10px;
+  width: 160px;
+  height: 40px;
+  border-radius: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  color: white;
+  background-color: var(--button-fcolor);
+  cursor: pointer;
+}
+
+.from_context{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+.to_context{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+.overlay_button:focus{
+  border: none;
+}
+
+.tooltip{
+  background-color: var(button-hcolor);
+}
+
+.select_coin_window {
+  position: absolute;
+  top: 200px;
+  left: 30%;
+  width: 655px;
+  height: 685px;
+  /* margin: 26px 59.7px 60px 24px; */
+  /* padding: 31px 116.3px 56px 53px; */
+  border-radius: 20px;
+  /* background-color: #155b84; */
+  z-index: 1;
+  background-color: gray;
+}
+
+/* .stake_confirm_message {
+  background-color: var(--box-color);
+  border-radius: 100%;
+  border: 3px solid var(--white-text);
+  border-radius: 8px;
+  position: absolute;
+  top: 25%;
+  left: 22%;
+  width: 800px;
+  height: 480px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+  z-index: 1;
+}
+.stakehome .stake_confirm_message.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+} */
+
+.select_coin_window .inner_message {
+  text-align: center;
+  font-size: 22px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: lighter;
+  color: var(--white-text);
+  padding: 60px 20px;
+}
+
+.select_coin_window .inner_message > p {
+  display: inline;
+  font-weight: bold;
 }

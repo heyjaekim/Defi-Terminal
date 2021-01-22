@@ -1,22 +1,52 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
+import { Link } from 'react-router-dom';
 
 class ConnectMask extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            topPoolData: this.props.topPoolData
+            topPoolData: [
+                {
+                  p_id: 0,
+                  pair_addr: '0xB10cf58E08b94480fCb81d341A63295eBb2062C2',
+                  pair_token0_name: 'ETH',
+                  pair_token1_name: 'USDT',
+                  pair_token0_img: 'images/eth_icon.png',
+                  pair_token1_img: 'images/dollar_icon.png',
+                },
+                {
+                  p_id: 1,
+                  pair_addr: '0xd4d9A707C2943f59525a9de00D2967A99f8B5f0a',
+                  pair_token0_name: 'ETH',
+                  pair_token1_name: 'USDT',
+                  pair_token0_img: 'images/dollar_icon.png',
+                  pair_token1_img: './images/eth_icon.png',
+                },
+                {
+                  p_id: 1,
+                  pair_addr: '0xd4d9A707C2943f59525a9de00D2967A99f8B5f0a',
+                  pair_token0_name: 'ETH',
+                  pair_token1_name: 'USDT',
+                  pair_token0_img: 'images/dollar_icon.png',
+                  pair_token1_img: 'images/eth_icon.png',
+                }
+              ],
+            
         }
         this.ConnectMetaMask = props.ConnectMetaMask;
         this.handleConnectYourWallet = props.handleConnectYourWallet;
     }
+
     render() {
         return (
             <section className="portfolioHomeAttr" >
                 <p style={{ textAlign: "center", paddingTop: "150px" }}><img src="images/pool_hopper-preview.png" alt="Logo" height="110px" /></p>
                 <p style={{ textAlign: "center", color: "#fafafa", fontSize: "22px", fontWeight: "bold" }}>Make your Ether work for you. Generate profits by staking it in liquidity pools.</p>
                 <p className="connectbox">
-                    <input className="" type="button" value="Connect Your Wallet" onClick={() => { this.ConnectMetaMask(); }} />
+                    {/* <Link to="/stake"> */}
+                        <input className="" type="button" value="Connect Your Wallet" onClick={() => { this.ConnectMetaMask(); }} />
+                    {/* </Link> */}
                 </p>
                 <Row>
 

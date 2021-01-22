@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Row } from 'reactstrap';
 import PercentSlider from "./PercentSlider.js";
 import Web3 from "web3";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
 
 class AddPool extends Component {
     constructor(props) {
@@ -10,18 +12,14 @@ class AddPool extends Component {
             token: 0,
             percent: 0,
             pair_token0_name: null,
-            pair_token1_name: null
+            pair_token1_name: null,
+            // 새로운 Swap Type을 추가할 때 마다 StakePage.js에 있는 addNewTokenData 함수 내 pair_abi_list 업데이트 필요.
+            swap_types: ['uniswap', 'sushiswap'],
+            swap_display: 'uniswap',
         };
         this.token = props.token;
         this.EtherBalance = props.EtherBalance;
         this.updateTradeTotalSize = props.updateTradeTotalSize;
-    }
-
-    allocToSubTokenSize = async () => {
-        this.token.lpAmtEth = this.token.tokenSize * (this.state.percent / 100);
-        this.setState((state, props) => {
-            return { token: props.token.tokenSize * (state.percent / 100) }
-        });
     }
 
     handleDisplayPairImg() {
@@ -41,7 +39,7 @@ class AddPool extends Component {
             console.log("handlePairChange", event.target.value);
             this.web3 = new Web3(window.ethereum);
             let pair_addr = String(event.target.value);
-            let PairContract = new this.web3.eth.Contract(this.props.token.uniswap_pair_abi, pair_addr);
+            let PairContract = new this.web3.eth.Contract(this.props.token.pair_abi, pair_addr);
             let token0_addr = await PairContract.methods.token0().call();
             let token1_addr = await PairContract.methods.token1().call();
             console.log("handlePairChange", token0_addr, token1_addr);
@@ -81,7 +79,6 @@ class AddPool extends Component {
             this.props.token.pair_token1_img = null;
         }
     };
-    //0x6eF026fC19F36E0747AAFDA652731Ce05441C4C1
 
     handleTokenChange = async (evt) => {
         evt.preventDefault();
@@ -98,9 +95,9 @@ class AddPool extends Component {
     };
 
     /* 각 Address에 할당해줄 Token Size를 측정하기 위한 함수 */
-    SetTokenAmount = async(percentage, value) => {
+    SetTokenAmount = async (percentage, value) => {
         // console.log("ether balance: ", this.props.token.etherBalance);
-        if (value !== 0){
+        if (value !== 0) {
             this.setState({
                 token: (parseFloat(value) / 100) * parseFloat(this.props.token.EtherBalance)
             });
@@ -112,47 +109,60 @@ class AddPool extends Component {
             });
             this.props.token.tokenSize = this.state.token;
             this.updateTradeTotalSize();
-            // this.props.token.tokenSize = this.state.token;
-            // this.updateTradeTotalSize();
         }
-        // console.log( this.props.token.tokenSize);
+    }
+
+    clickItem = (value) => {
+        this.setState({
+            swap_display: value
+        })
+        // 선택한 swap pair abi로 업데이트
+        this.props.token.pair_abi = this.props.token.pair_abi_list[value];
+        console.log("SELECTED TOKEN PAIR ABI: ", value, this.props.token.pair_abi);
     }
 
     render() {
-        // console.log("t_id: " + this.props.token.t_id);
-        // console.log("pair names: " + this.props.token.pair_token0_name + this.props.token.pair_token1_name);
-        // console.log("total trade size: ", this.props.totalTradeSize);
-        // console.log("ether balance: ", this.props.EtherBalance);
         return (
             <React.Fragment>
-                <Row>
-                    <div className="display_default_pair" id={this.props.token.default_t_id}>
-                        <button className="eth_icon"><img src="images/eth_icon.png" alt=""></img></button>
-                        <button className="dollar_icon"><img src="images/dollar_icon.png" alt=""></img></button>
-                        <div className="eth_usdt_pair">
-                            <h5> {this.props.token.pairLeft} - {this.props.token.pairRight} </h5>
+                    {this.props.onStake ? 
+                    <Row>
+                        <div className="display_default_pair" id={this.props.token.default_t_id}>
+                            <button className="eth_icon"><img src="images/eth_icon.png" alt="eth_icon"></img></button>
+                            <button className="dollar_icon"><img src="images/dollar_icon.png" alt="dollar_icon"></img></button>
+                            <div className="swap_select">
+                                <DropdownButton id="dropdown-performer" title={this.state.swap_display} menuAlign="left">
+                                    <Dropdown.Item id="dropdown-performer-item0" onClick={(e) => { this.clickItem(this.state.swap_types[0]) }}>
+                                        {this.state.swap_types[0]}
+                                    </Dropdown.Item>
+                                    <Dropdown.Item id="dropdown-performer-item1" onClick={(e) => { this.clickItem(this.state.swap_types[1]) }}>
+                                        {this.state.swap_types[1]}
+                                    </Dropdown.Item>
+                                </DropdownButton>
+                            </div>
                         </div>
-                    </div>
-                    <div className="display_address_pair" id={this.props.token.address_t_id}>
-                        <button className="eth_icon"><img src={this.props.token.pair_token0_img} alt=""></img></button>
-                        <button className="dollar_icon"><img src={this.props.token.pair_token1_img} alt=""></img></button>
-                        <div className="eth_usdt_pair">
-                            <h5>  {this.props.token.pair_token0_name} - {this.props.token.pair_token1_name} </h5>
+                        <div className="display_address_pair" id={this.props.token.address_t_id}>
+                            <button className="eth_icon"><img src={this.props.token.pair_token0_img} alt=""></img></button>
+                            <button className="dollar_icon"><img src={this.props.token.pair_token1_img} alt=""></img></button>
+                            <div className="eth_usdt_pair">
+                                <h5>  {this.props.token.pair_token0_name} - {this.props.token.pair_token1_name} </h5>
+                            </div>
                         </div>
-                    </div>
-                    <div className="eth_token_size">
-                        <div className="address">
-                            <input className="address-input" type="text" name="" onChange={(e) => { this.handlePairChange(e); }} />
-                            <input className="inputTokenSize" type="number" name={this.token.tokenName} min="0"
-                                value={this.state.token} placeholder='0' onChange={this.handleTokenChange} />
+                        <div className="eth_token_size">
+                            <div className="address">
+                                <input className="address-input" type="text" name="" onChange={(e) => { this.handlePairChange(e); }} />
+                                <input className="inputTokenSize" type="number" name={this.token.tokenName} min="0"
+                                    value={this.state.token} placeholder='0' onChange={this.handleTokenChange} />
+                            </div>
+                            <div className="token_size">
+                            </div>
                         </div>
-                        <div className="token_size">
+                        <div className="percent_slider">
+                            <PercentSlider SetTokenAmount={this.SetTokenAmount} />
                         </div>
-                    </div>
-                    <div className="percent_slider">
-                        <PercentSlider SetTokenAmount={this.SetTokenAmount} />  
-                    </div>
-                </Row>
+                    </Row>
+                    :
+                    ""
+                    }
                 <div className="eth-usdt-row"></div>
             </React.Fragment>
         );
