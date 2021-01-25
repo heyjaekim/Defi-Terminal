@@ -672,13 +672,23 @@
   background-color: #252525;
 }
 
-.staking-btn {
+.staking-btn.inactive {
   border-radius: 20px;
   width: 144px;
   height: 40px;
   margin-right: 10px;
   border: solid 1px white;
   background-color: var(--background-color);
+  color: white;
+  cursor: pointer;
+}
+.staking-btn.active {
+  border-radius: 20px;
+  width: 144px;
+  height: 40px;
+  margin-right: 10px;
+  border: solid 1px white;
+  background-color: var(--button-fcolor);
   color: white;
   cursor: pointer;
 }
@@ -690,13 +700,23 @@
   background-color: var(--button-fcolor);
   outline: none;
 }
-.swapping-btn {
+.swapping-btn.inactive {
   border-radius: 20px;
   width: 144px;
   height: 40px;
   margin-right: 10px;
   border: solid 1px white;
   background-color: var(--background-color);
+  color: white;
+  cursor: pointer;
+}
+.swapping-btn.active {
+  border-radius: 20px;
+  width: 144px;
+  height: 40px;
+  margin-right: 10px;
+  border: solid 1px white;
+  background-color: var(--button-fcolor);
   color: white;
   cursor: pointer;
 }
@@ -708,13 +728,23 @@
   background-color: var(--button-fcolor);
   outline: none;
 }
-.lending-btn {
+.lending-btn.inactive {
   border-radius: 20px;
   width: 144px;
   height: 40px;
   margin-right: 10px;
   border: solid 1px white;
   background-color: var(--background-color);
+  color: white;
+  cursor: pointer;
+}
+.lending-btn.active {
+  border-radius: 20px;
+  width: 144px;
+  height: 40px;
+  margin-right: 10px;
+  border: solid 1px white;
+  background-color: var(--button-fcolor);
   color: white;
   cursor: pointer;
 }
@@ -731,7 +761,7 @@
   display:none;
 }
 #swapping_page {
-  display: display;
+  display: none;
 }
 #lending_page {
   display: none;

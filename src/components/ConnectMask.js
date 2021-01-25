@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class ConnectMask extends React.Component {
     constructor(props) {

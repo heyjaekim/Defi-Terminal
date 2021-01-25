@@ -1,13 +1,18 @@
 import React from "react";
+
 import Navbar from './components/Navbar.js';
 import StakePage from './pages/StakePage.js';
 import PortfolioPage from "./pages/PortfolioPage.js";
 import AboutPage from "./pages/AboutPage.js";
 import ConnectMask from './components/ConnectMask.js'
-import Web3 from "web3";
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './components/css/Navbar.css';
 import './components/css/InitialPage.css'
+
+import { connect } from 'react-redux';
+// import { connect, bindActionCreators } from 'react-redux';
+import * as actions from './actions';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Web3 from "web3";
 import Tabletop from 'tabletop';
 
 class App extends React.Component {

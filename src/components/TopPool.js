@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Row } from 'reactstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { AiTwotoneCopy } from 'react-icons/ai';
-import Web3 from 'web3';
+// import Web3 from 'web3';
 
 function TopPool(props) {
     const [copied, setCopied] = useState(false);
@@ -36,7 +36,7 @@ function TopPool(props) {
         set_token0_img(token0_img);
         set_token1_img(token1_img);
 
-    }, []);
+    });
     return (
         <React.Fragment>
             <Row>

@@ -9,7 +9,6 @@ import { FiArrowDown } from 'react-icons/fi'
 import BigNumber from "bignumber.js";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 import GasSlider from "../components/GasSlider.js";
 import AddPool from '../components/AddPool.js';
@@ -37,6 +36,9 @@ class StakePage extends React.Component {
             date: '',
             web3: new Web3(window.ethereum),
             onStake: false,
+            isStaking: false,
+            isSwapping: false,
+            isLending: false,
             topPoolData: [
                 {
                     p_id: 0,
@@ -298,26 +300,38 @@ class StakePage extends React.Component {
     }
 
     onClickTradingOption = (e) => {
-        if (e.target.id === "staking_btn") {
-            this.setState({ onStake: true });
-        } else {
-            this.setState({ onStake: false });
-        }
-        console.log("onStake: ", this.state.onStake);
         switch (e.target.id) {
             case "staking_btn":
+                this.setState({
+                    onStake: true,
+                    isStaking: true,
+                    isSwapping: false,
+                    isLending: false,
+                });
                 document.getElementById("staking_page").style.display = "block"
                 document.getElementById("swapping_page").style.display = "none"
                 document.getElementById("lending_page").style.display = "none"
                 console.log("onClickTradingOption staking page display")
                 break;
             case "swapping_btn":
+                this.setState({
+                    onStake: false,
+                    isStaking: false,
+                    isSwapping: true,
+                    isLending: false, 
+                });
                 document.getElementById("staking_page").style.display = "none"
                 document.getElementById("swapping_page").style.display = "block"
                 document.getElementById("lending_page").style.display = "none"
                 console.log("onClickTradingOption swapping page display")
                 break;
             case "lending_btn":
+                this.setState({
+                    onStake: false,
+                    isStaking: false,
+                    isSwapping: false,
+                    isLending: true, 
+                });
                 document.getElementById("staking_page").style.display = "none"
                 document.getElementById("swapping_page").style.display = "none"
                 document.getElementById("lending_page").style.display = "block"
@@ -360,9 +374,9 @@ class StakePage extends React.Component {
                             <p>What would you like to do?</p>
                         </header>
                         <nav className="trading_option">
-                            <button className="staking-btn" id="staking_btn" onClick={(e) => { this.cancelToResetStates(); this.onClickTradingOption(e) }}>Staking</button>
-                            <button className="swapping-btn" id="swapping_btn" onClick={(e) => { this.cancelToResetStates(); this.onClickTradingOption(e) }}>Swapping</button>
-                            <button className="lending-btn" id="lending_btn" onClick={(e) => { this.cancelToResetStates(); this.onClickTradingOption(e) }}>Lending</button>
+                            <button className={`staking-btn ${this.state.isStaking ? "active" : "inactive"}`} id="staking_btn" onClick={(e) => { this.cancelToResetStates(); this.onClickTradingOption(e) }}>Staking</button>
+                            <button className={`swapping-btn ${this.state.isSwapping ? "active" : "inactive"}`} id="swapping_btn" onClick={(e) => { this.cancelToResetStates(); this.onClickTradingOption(e) }}>Swapping</button>
+                            <button className={`lending-btn ${this.state.isLending ? "active" : "inactive"}`} id="lending_btn" onClick={(e) => { this.cancelToResetStates(); this.onClickTradingOption(e) }}>Lending</button>
                         </nav>
                         <div id="staking_page">
                             <Row>
@@ -600,7 +614,8 @@ class StakePage extends React.Component {
 
                         </div>
                     </section>
-                    <section className="select_coin_window">
+                    {/* select the coin part to implement */}
+                    {/* <section className="select_coin_window">
                         <div className="inner_message">
                             You are staking <p>{this.state.totalTradeSize} ETH</p> in <img src="images/eth_dollar.png" alt="eth-dollar" width="55px"></img>
                             <p> ETH - USDT</p>
@@ -623,7 +638,7 @@ class StakePage extends React.Component {
                                 }.bind(this), 3000);
                             }}>Confirm</button>
                         </div>
-                    </section>
+                    </section> */}
                 </div>
                 <div className="recommend_page">
                     <section className="recommend_below">
