@@ -1,4 +1,4 @@
-# Defi-PoolHopper
+# Defi-Terminal
  
 ## 설치 방법 및 환경 설정
     - Branch Address: https://github.com/heyjaekim/Defi-Terminal.git
