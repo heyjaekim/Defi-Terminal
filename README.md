@@ -1,10 +1,8 @@
 # Defi-PoolHopper
  
 ## 설치 방법 및 환경 설정
-    - Branch Address: https://gitlab.com/heyjaekim/defi-poolhopper.git
-    - Please do "git clone https://gitlab.com/heyjaekim/defi-poolhopper.git"
-    - Branch Name: Jaeweon
-        - Please do "git checkout Jaeweon"
+    - Branch Address: https://github.com/heyjaekim/Defi-Terminal.git
+    - Please do "git clone https://github.com/heyjaekim/Defi-Terminal.git"
 
 ### `yarn install` 입력하여 `node_modles`를 설치.
 1. yarn 설치가 안되있는 경우 https://classic.yarnpkg.com/en/docs/install#windows-stable 참조.
@@ -25,12 +23,6 @@
 
 ## AWS CLI 환경설정 
 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html
-### CLI 환경 설정
-    aws configure --profile=poolhopper-admin
-    AWS Access Key ID [None]: AKIAZMEATULGUC3CZPUA
-    AWS Secret Access Key [None]: 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
-    Default region name [None]: ap-northeast-2
-    Default output format [None]: json
 
 ## Google sheet (Top Pool Data) 주소 및 어카운트 정보
     https://spreadsheets.google.com/feeds/list/1NmoQ1x7SvX0wxlhmuXsvdu_cWGpROnTBzqus46v4Oog/od6/public/basic?alt=json
