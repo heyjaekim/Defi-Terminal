@@ -24,11 +24,6 @@
 ## AWS CLI 환경설정 
 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html
 
-## Google sheet (Top Pool Data) 주소 및 어카운트 정보
-    https://spreadsheets.google.com/feeds/list/1NmoQ1x7SvX0wxlhmuXsvdu_cWGpROnTBzqus46v4Oog/od6/public/basic?alt=json
-
-    Account info: defi.poolhopper@gmail.com
-    Account pwd: Jointherepublic!
 
 ## 프로젝트 파일 구조
 
